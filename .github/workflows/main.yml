@@ -1,9 +1,9 @@
-name: WordPress Core Coding Standards
+name: Bebop Actions
 
 on: [push]
 
 jobs:
-  laravel-tests:
+  wordpress-coding-standards:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
