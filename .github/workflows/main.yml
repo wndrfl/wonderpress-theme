@@ -1,0 +1,15 @@
+name: WordPress Core Coding Standards
+
+on: [push]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Codesniff against the WordPress Core Coding Standards...
+      run: |
+        composer create-project wp-coding-standards/wpcs --no-dev
+        composer require --dev dealerdirect/phpcodesniffer-composer-installer
+        ./vendor/bin/phpcs -i
+        ./vendor/bin/phpcs . -p -n -v --standard=WordPress-Core --ignore=*/node_modules/*,*/js/*
