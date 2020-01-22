@@ -12,4 +12,4 @@ jobs:
         composer create-project wp-coding-standards/wpcs --no-dev
         composer require --dev dealerdirect/phpcodesniffer-composer-installer
         ./vendor/bin/phpcs -i
-        ./vendor/bin/phpcs . -p -n -v --standard=WordPress-Core --ignore=*/node_modules/*,*/js/*
+        ./vendor/bin/phpcs . -p -n -v --standard=WordPress-Core --ignore=*/node_modules/*,*/js/*,*/wpcs/*,*/vendor/*
