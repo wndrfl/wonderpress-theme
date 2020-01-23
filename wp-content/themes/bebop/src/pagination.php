@@ -1,5 +1,5 @@
 <!-- pagination -->
 <div class="pagination">
-	<?php skellie_pagination(); ?>
+	<?php bebop_pagination(); ?>
 </div>
 <!-- /pagination -->

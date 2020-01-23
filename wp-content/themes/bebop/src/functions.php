@@ -31,15 +31,15 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_theme_support( 'automatic-feed-links' );
 
 	// Localisation Support
-	//load_theme_textdomain('skellie', get_template_directory() . '/languages');
+	//load_theme_textdomain('bebop', get_template_directory() . '/languages');
 }
 
 /*------------------------------------*\
 	Functions
 \*------------------------------------*/
 
-// skellie Blank navigation
-function skellie_nav( $location = 'header-menu' ) {
+// bebop Blank navigation
+function bebop_nav( $location = 'header-menu' ) {
 	wp_nav_menu(
 		array(
 			'theme_location'  => $location,
@@ -62,7 +62,7 @@ function skellie_nav( $location = 'header-menu' ) {
 	);
 }
 
-function skellie_header_scripts() {
+function bebop_header_scripts() {
 	if ( 'wp-login.php' !== $GLOBALS['pagenow'] && ! is_admin() ) {
 
 		// remove jquery
@@ -77,16 +77,16 @@ function skellie_header_scripts() {
 	}
 }
 
-// Load skellie Blank conditional scripts
-function skellie_conditional_scripts() {
+function bebop_conditional_scripts() {
 	// if (is_page('pagenamehere')) {
 	//     wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
 	//     wp_enqueue_script('scriptname'); // Enqueue it!
 	// }
 }
 
-// Load skellie Blank styles
-function skellie_styles() {
+// Load bebop styles
+function bebop_styles() {
+
 	// remove dashicons
 	wp_deregister_style( 'dashicons' );
 
@@ -100,8 +100,8 @@ function skellie_styles() {
 	wp_enqueue_style( 'theme' ); // Enqueue it!
 }
 
-// Register skellie Blank Navigation
-function register_skellie_menu() {
+// Register bebop Navigation
+function register_bebop_menu() {
 	register_nav_menus(
 		array( // Using array to specify more menus if needed
 			'header-menu'  => 'Header Menu', // Main Navigation
@@ -193,7 +193,7 @@ function my_remove_recent_comments_style() {
 }
 
 // Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
-function skellie_pagination() {
+function bebop_pagination() {
 	global $wp_query;
 	$big = 999999999;
 	echo paginate_links(
@@ -207,18 +207,18 @@ function skellie_pagination() {
 }
 
 // Custom Excerpts
-function skellie_index( $length ) {
-	// Create 20 Word Callback for Index page Excerpts, call using skellie_excerpt('skellie_index');
+function bebop_index( $length ) {
+	// Create 20 Word Callback for Index page Excerpts, call using bebop_excerpt('bebop_index');
 	return 50;
 }
 
-// Create 40 Word Callback for Custom Post Excerpts, call using skellie_excerpt('skellie_custom_post');
-function skellie_custom_post( $length ) {
+// Create 40 Word Callback for Custom Post Excerpts, call using bebop_excerpt('bebop_custom_post');
+function bebop_custom_post( $length ) {
 	return 40;
 }
 
 // Create the Custom Excerpts callback
-function skellie_excerpt( $length_callback = '', $more_callback = '' ) {
+function bebop_excerpt( $length_callback = '', $more_callback = '' ) {
 	global $post;
 	if ( function_exists( $length_callback ) ) {
 		add_filter( 'excerpt_length', $length_callback );
@@ -234,9 +234,9 @@ function skellie_excerpt( $length_callback = '', $more_callback = '' ) {
 }
 
 // Custom View Article link to Post
-function skellie_blank_view_article( $more ) {
+function bebop_blank_view_article( $more ) {
 	global $post;
-	return '...<br /><a class="btn btn-orange" href="' . get_permalink( $post->ID ) . '">' . __( 'Read More', 'skellie' ) . '</a>';
+	return '...<br /><a class="btn btn-orange" href="' . get_permalink( $post->ID ) . '">' . __( 'Read More', 'bebop' ) . '</a>';
 }
 
 // Remove Admin bar
@@ -245,7 +245,7 @@ function remove_admin_bar() {
 }
 
 // Remove 'text/css' from our enqueued stylesheet
-function skellie_style_remove( $tag ) {
+function bebop_style_remove( $tag ) {
 	return preg_replace( '~\s+type=["\'][^"\']++["\']~', '', $tag );
 }
 
@@ -256,7 +256,7 @@ function remove_thumbnail_dimensions( $html ) {
 }
 
 // Custom Gravatar in Settings > Discussion
-function skelliegravatar( $avatar_defaults ) {
+function bebopgravatar( $avatar_defaults ) {
 	$myavatar                     = get_template_directory_uri() . '/img/gravatar.jpg';
 	$avatar_defaults[ $myavatar ] = 'Custom Gravatar';
 	return $avatar_defaults;
@@ -276,14 +276,14 @@ function enable_threaded_comments() {
 \*------------------------------------*/
 
 // Add Actions
-add_action( 'init', 'skellie_header_scripts' ); // Add Custom Scripts to wp_head
-add_action( 'wp_print_scripts', 'skellie_conditional_scripts' ); // Add Conditional Page Scripts
+add_action( 'init', 'bebop_header_scripts' ); // Add Custom Scripts to wp_head
+add_action( 'wp_print_scripts', 'bebop_conditional_scripts' ); // Add Conditional Page Scripts
 add_action( 'get_header', 'enable_threaded_comments' ); // Enable Threaded Comments
-add_action( 'wp_enqueue_scripts', 'skellie_styles' ); // Add Theme Stylesheet
-add_action( 'init', 'register_skellie_menu' ); // Add Skellie Blank Menu
-add_action( 'init', 'create_post_type_skellie' ); // Add our Skellie Blank Custom Post Type
+add_action( 'wp_enqueue_scripts', 'bebop_styles' ); // Add Theme Stylesheet
+add_action( 'init', 'register_bebop_menu' ); // Add bebop Blank Menu
+add_action( 'init', 'create_post_type_bebop' ); // Add our bebop Blank Custom Post Type
 add_action( 'widgets_init', 'my_remove_recent_comments_style' ); // Remove inline Recent Comment Styles from wp_head()
-add_action( 'init', 'skellie_pagination' ); // Add our skellie Pagination
+add_action( 'init', 'bebop_pagination' ); // Add our bebop Pagination
 
 // Remove Actions
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -304,7 +304,7 @@ remove_action( 'wp_head', 'rel_canonical' );
 remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
 
 // Add Filters
-add_filter( 'avatar_defaults', 'skelliegravatar' ); // Custom Gravatar in Settings > Discussion
+add_filter( 'avatar_defaults', 'bebopgravatar' ); // Custom Gravatar in Settings > Discussion
 add_filter( 'body_class', 'add_slug_to_body_class' ); // Add slug to body class (Starkers build)
 add_filter( 'widget_text', 'do_shortcode' ); // Allow shortcodes in Dynamic Sidebar
 add_filter( 'widget_text', 'shortcode_unautop' ); // Remove <p> tags in Dynamic Sidebars (better!)
@@ -315,9 +315,9 @@ add_filter( 'wp_nav_menu_args', 'my_wp_nav_menu_args' ); // Remove surrounding <
 add_filter( 'the_category', 'remove_category_rel_from_category_list' ); // Remove invalid rel attribute
 add_filter( 'the_excerpt', 'shortcode_unautop' ); // Remove auto <p> tags in Excerpt (Manual Excerpts only)
 add_filter( 'the_excerpt', 'do_shortcode' ); // Allows Shortcodes to be executed in Excerpt (Manual Excerpts only)
-add_filter( 'excerpt_more', 'skellie_blank_view_article' ); // Add 'View Article' button instead of [...] for Excerpts
+add_filter( 'excerpt_more', 'bebop_blank_view_article' ); // Add 'View Article' button instead of [...] for Excerpts
 add_filter( 'show_admin_bar', 'remove_admin_bar' ); // Remove Admin bar
-add_filter( 'style_loader_tag', 'skellie_style_remove' ); // Remove 'text/css' from enqueued stylesheet
+add_filter( 'style_loader_tag', 'bebop_style_remove' ); // Remove 'text/css' from enqueued stylesheet
 add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10 ); // Remove width and height dynamic attributes to thumbnails
 add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
 add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
@@ -326,18 +326,18 @@ add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 ); // Remove wi
 remove_filter( 'the_excerpt', 'wpautop' ); // Remove <p> tags from Excerpt altogether
 
 // Shortcodes
-add_shortcode( 'skellie_shortcode_demo', 'skellie_shortcode_demo' ); // You can place [skellie_shortcode_demo] in Pages, Posts now.
-add_shortcode( 'skellie_shortcode_demo_2', 'skellie_shortcode_demo_2' ); // Place [skellie_shortcode_demo_2] in Pages, Posts now.
+add_shortcode( 'bebop_shortcode_demo', 'bebop_shortcode_demo' ); // You can place [bebop_shortcode_demo] in Pages, Posts now.
+add_shortcode( 'bebop_shortcode_demo_2', 'bebop_shortcode_demo_2' ); // Place [bebop_shortcode_demo_2] in Pages, Posts now.
 
 // Shortcodes above would be nested like this -
-// [skellie_shortcode_demo] [skellie_shortcode_demo_2] Here's the page title! [/skellie_shortcode_demo_2] [/skellie_shortcode_demo]
+// [bebop_shortcode_demo] [bebop_shortcode_demo_2] Here's the page title! [/bebop_shortcode_demo_2] [/bebop_shortcode_demo]
 
 /*------------------------------------*\
 	Custom Post Types
 \*------------------------------------*/
 
 // Create 1 Custom Post type for a Demo
-function create_post_type_skellie() {
+function create_post_type_bebop() {
 	//register_taxonomy_for_object_type('category', 'inventory-item'); // Register Taxonomies for Category
 	//register_taxonomy_for_object_type('post_tag', 'inventory-item');
 	register_post_type(
@@ -396,120 +396,12 @@ function create_post_type_skellie() {
 \*------------------------------------*/
 
 // Shortcode Demo with Nested Capability
-function skellie_shortcode_demo( $atts, $content = null ) {
+function bebop_shortcode_demo( $atts, $content = null ) {
 	return '<div class="shortcode-demo">' . do_shortcode( $content ) . '</div>'; // do_shortcode allows for nested Shortcodes
 }
 
 // Shortcode Demo with simple <h2> tag
-function skellie_shortcode_demo_2( $atts, $content = null ) {
+function bebop_shortcode_demo_2( $atts, $content = null ) {
 	// Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
 	return '<h2>' . $content . '</h2>';
-}
-
-function skellie_breadcrumbs() {
-	global $post;
-	echo '<ul class="breadcrumbs hidden-xs">';
-	echo '<li><a href="';
-	echo get_option( 'home' );
-	echo '">';
-	echo 'Home';
-	echo '</a></li><li class="separator"><i class="fa fa-chevron-right"></i></li>';
-
-	if ( ! is_home() ) {
-
-		if ( is_category() || is_tax() || is_single() ) {
-			echo '<li>';
-			if ( is_category() ) {
-				echo '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '">Resource Center</a>';
-				echo '</li><li class="separator"><i class="fa fa-chevron-right"></i></li><li>';
-				the_category( '</li><li class="separator"><i class="fa fa-chevron-right"></i></li><li> ' );
-			} elseif ( is_tax() ) {
-				echo '<a href="' . get_post_type_archive_link( 'inventory-item' ) . '">Browse</a>';
-				echo '</li><li class="separator"><i class="fa fa-chevron-right"></i></li><li>';
-				single_cat_title( '', true );
-			} elseif ( is_single() ) {
-
-				if ( get_post_type() === 'inventory-item' ) {
-					echo '<a href="' . get_post_type_archive_link( 'inventory-item' ) . '">Browse</a>';
-					echo '</li><li class="separator"><i class="fa fa-chevron-right"></i></li><li>';
-					$terms = wp_get_post_terms( null, 'inventory_category' );
-					if ( $terms ) {
-						echo $terms[0];
-						echo '</li><li class="separator"><i class="fa fa-chevron-right"></i></li><li>';
-					}
-				} else {
-					echo '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '">Resource Center</a>';
-					echo '</li><li class="separator"><i class="fa fa-chevron-right"></i></li><li>';
-				}
-				the_title();
-				echo '</li>';
-			}
-		} elseif ( is_page() ) {
-			if ( $post->post_parent ) {
-				$anc   = get_post_ancestors( $post->ID );
-				$title = get_the_title();
-				foreach ( $anc as $ancestor ) {
-					$output = '<li><a href="' . get_permalink( $ancestor ) . '" title="' . get_the_title( $ancestor ) . '">' . get_the_title( $ancestor ) . '</a></li> <li class="separator"><i class="fa fa-chevron-right"></i></li>';
-				}
-				echo $output;
-				echo '<strong title="' . $title . '"> ' . $title . '</strong>';
-			} else {
-				echo '<li><strong> ' . get_the_title() . '</strong></li>';
-			}
-		} elseif ( is_404() ) {
-			echo"<li>We can't find that page (404)</li>";
-		} elseif ( is_search() ) {
-			echo'<li>Search Results';
-			echo'</li>';
-		} else {
-			echo '<li>Browse</li>';
-		}
-	} elseif ( is_tag() ) {
-		single_tag_title();} elseif ( is_day() ) {
-		echo'<li>Archive for ';
-		the_time( 'F jS, Y' );
-		echo'</li>';} elseif ( is_month() ) {
-			echo'<li>Archive for ';
-			the_time( 'F, Y' );
-			echo'</li>';} elseif ( is_year() ) {
-			echo'<li>Archive for ';
-			the_time( 'Y' );
-			echo'</li>';} elseif ( is_author() ) {
-				echo'<li>Author Archive';
-				echo'</li>';} elseif ( isset( $_GET['paged'] ) && ! empty( $_GET['paged'] ) ) {
-				echo '<li>Blog Archives';
-				echo'</li>';} elseif ( is_search() ) {
-					echo'<li>Search Results';
-					echo'</li>';} else {
-						echo '<li><strong>Resource Center</strong></li>';}
-					echo '</ul>';
-}
-
-
-if ( function_exists( 'acf_add_options_page' ) ) {
-
-	acf_add_options_page(
-		array(
-			'page_title' => 'Theme General Settings',
-			'menu_title' => 'Theme Settings',
-			'menu_slug'  => 'theme-general-settings',
-			'capability' => 'edit_posts',
-			'redirect'   => false,
-		)
-	);
-
-	acf_add_options_sub_page(
-		array(
-			'page_title'  => 'Theme Social Settings',
-			'menu_title'  => 'Social / Links',
-			'parent_slug' => 'theme-general-settings',
-		)
-	);
-
-	// acf_add_options_sub_page(array(
-	//     'page_title'    => 'Theme Footer Settings',
-	//     'menu_title'    => 'Footer',
-	//     'parent_slug'   => 'theme-general-settings',
-	// ));
-
 }

@@ -6,7 +6,7 @@
 
 			<h1>
 			<?php
-			_e( 'Categories for ', 'skellie' );
+			_e( 'Categories for ', 'bebop' );
 			single_cat_title();
 			?>
 			</h1>

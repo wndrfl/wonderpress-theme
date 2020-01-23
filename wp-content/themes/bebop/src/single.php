@@ -33,29 +33,29 @@
 					<?php the_date(); ?> <?php the_time(); ?>
 				</time>
 			</span>
-			<span class="author"><?php _e( 'Published by', 'skellie' ); ?> <?php the_author_posts_link(); ?></span>
+			<span class="author"><?php _e( 'Published by', 'bebop' ); ?> <?php the_author_posts_link(); ?></span>
 			<span class="comments">
 			<?php
 			if ( comments_open( get_the_ID() ) ) {
-				comments_popup_link( __( 'Leave your thoughts', 'skellie' ), __( '1 Comment', 'skellie' ), __( '% Comments', 'skellie' ) );}
+				comments_popup_link( __( 'Leave your thoughts', 'bebop' ), __( '1 Comment', 'bebop' ), __( '% Comments', 'bebop' ) );}
 			?>
 			</span>
 			<!-- /post details -->
 
 			<?php the_content(); // Dynamic Content ?>
 
-			<?php the_tags( __( 'Tags: ', 'skellie' ), ', ', '<br>' ); // Separated by commas with a line break at the end ?>
+			<?php the_tags( __( 'Tags: ', 'bebop' ), ', ', '<br>' ); // Separated by commas with a line break at the end ?>
 
 			<p>
 			<?php
-			_e( 'Categorised in: ', 'skellie' );
+			_e( 'Categorised in: ', 'bebop' );
 			the_category( ', ' ); // Separated by commas
 			?>
 			</p>
 
 			<p>
 			<?php
-			_e( 'This post was written by ', 'skellie' );
+			_e( 'This post was written by ', 'bebop' );
 			the_author();
 			?>
 			</p>
@@ -74,7 +74,7 @@
 		<!-- article -->
 		<article>
 
-			<h1><?php _e( 'Sorry, nothing to display.', 'skellie' ); ?></h1>
+			<h1><?php _e( 'Sorry, nothing to display.', 'bebop' ); ?></h1>
 
 		</article>
 		<!-- /article -->

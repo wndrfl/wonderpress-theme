@@ -11,7 +11,7 @@
 
 			<h1>
 			<?php
-			_e( 'Author Archives for ', 'skellie' );
+			_e( 'Author Archives for ', 'bebop' );
 			echo get_the_author();
 			?>
 			</h1>
@@ -22,7 +22,7 @@
 
 			<h2>
 				<?php
-				_e( 'About ', 'skellie' );
+				_e( 'About ', 'bebop' );
 				echo get_the_author();
 				?>
 			</h2>
@@ -60,11 +60,11 @@
 						<?php the_date(); ?> <?php the_time(); ?>
 					</time>
 				</span>
-				<span class="author"><?php _e( 'Published by', 'skellie' ); ?> <?php the_author_posts_link(); ?></span>
-				<span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'skellie' ), __( '1 Comment', 'skellie' ), __( '% Comments', 'skellie' ) ); ?></span>
+				<span class="author"><?php _e( 'Published by', 'bebop' ); ?> <?php the_author_posts_link(); ?></span>
+				<span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'bebop' ), __( '1 Comment', 'bebop' ), __( '% Comments', 'bebop' ) ); ?></span>
 				<!-- /post details -->
 
-				<?php skellie_excerpt( 'skellie_index' ); // Build your custom callback length in functions.php ?>
+				<?php bebop_excerpt( 'bebop_index' ); // Build your custom callback length in functions.php ?>
 
 				<br class="clear">
 
@@ -80,7 +80,7 @@
 			<!-- article -->
 			<article>
 
-				<h2><?php _e( 'Sorry, nothing to display.', 'skellie' ); ?></h2>
+				<h2><?php _e( 'Sorry, nothing to display.', 'bebop' ); ?></h2>
 
 			</article>
 			<!-- /article -->

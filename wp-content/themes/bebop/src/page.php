@@ -33,7 +33,7 @@
 			<!-- article -->
 			<article>
 
-				<h2><?php _e( 'Sorry, nothing to display.', 'skellie' ); ?></h2>
+				<h2><?php _e( 'Sorry, nothing to display.', 'bebop' ); ?></h2>
 
 			</article>
 			<!-- /article -->
