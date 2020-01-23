@@ -1,16 +1,13 @@
-name: Run PHPCS on pull requests
+name: WordPress Coding Standards
 
 on: pull_request
 
 jobs:
-  phpcs:
+  wordpress-coding-standards:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-    - uses: docker://rtcamp/action-phpcs-code-review:v2.0.0
-      env:
-        GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
-      with:
-        args: "WordPress,WordPress-Core,WordPress-Docs"
+    - uses: actions/checkout@v1
+    - name: Codesniff against the WordPress Core Coding Standards...
+      run: |
+        composer install
+        ./vendor/bin/phpcs .
