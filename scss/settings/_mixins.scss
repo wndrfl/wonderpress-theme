@@ -128,14 +128,6 @@
 
 	@extend %align-center;
 
-	&.white {
-		color:$white-text;
-
-		a {
-			color:$white-text;
-		}
-	}
-
 	a {
 		color:$black;
 		text-decoration:none;
@@ -143,7 +135,7 @@
 }
 
 %paragraph {
-	color:$white-text;
+	color:$black;
 	font-size:16px;
 	font-weight:400;
 	line-height:24px;
