@@ -41,18 +41,12 @@
 	<header id="theme-header" class="theme-header clear" role="banner">
 		<div class="container">
 
-			<div class="theme-header-logo">
+			<div>
 				<a href="<?php echo home_url(); ?>"></a>
 			</div>
 
-			<nav class="theme-header-nav hidden-xs" role="navigation">
+			<nav role="navigation">
 				<?php bebop_nav( 'header-menu' ); ?>
 			</nav>
-
-			<a href="#" id="theme-header-hamburger" class="theme-header-hamburger visible-xs-block">
-				<span class="theme-header-hamburger-bar"></span>
-				<span class="theme-header-hamburger-bar"></span>
-				<span class="theme-header-hamburger-bar"></span>
-			</a>
 		</div>
 	</header>
