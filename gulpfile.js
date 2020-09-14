@@ -16,15 +16,15 @@ var sass         = require( 'gulp-sass' ),
 
 var paths = {
 	'dev': {
-		'images' : './src/images/src/',
-		'js': './src/js/src/',
+		'images' : './images/src/',
+		'js': './js/src/',
 		'packages': './node_modules/',
-		'scss': './src/scss/'
+		'scss': './scss/'
 	},
 	'production': {
-		'css': './src/css/',
-		'images' : './src/images/',
-		'js': './src/js/'
+		'css': './css/',
+		'images' : './images/',
+		'js': './js/'
 	}
 };
 
