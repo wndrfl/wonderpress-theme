@@ -1,4 +1,4 @@
-# Brass Tacks
+# ✨ Brass Tacks
 
 Brass Tacks is the official Wonderful boilerplate theme for WordPress. The goal is to provide coverage for the basics of a WordPress theme, without imposing opinion on styles or structure.
 
