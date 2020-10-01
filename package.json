@@ -1,5 +1,5 @@
 {
-  "name": "bebop",
+  "name": "brass-tacks",
   "version": "1.0.0",
   "devDependencies": {
     "@wndrfl/static-kit-cli": "^1.1.4"
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wndrfl/bebop.git"
+    "url": "git+https://github.com/wndrfl/brass-tacks.git"
   },
   "author": "Johnnie Munger <johnnie@wonderful.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wndrfl/bebop/issues"
+    "url": "https://github.com/wndrfl/brass-tacks/issues"
   },
-  "homepage": "https://github.com/wndrfl/bebop",
+  "homepage": "https://github.com/wndrfl/brass-tacks",
   "description": "The official Wonderful boilerplate theme for WordPress.",
   "main": "gulpfile.js",
   "keywords": [],
