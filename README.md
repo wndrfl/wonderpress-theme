@@ -8,6 +8,6 @@ This theme leans heavily on Wonderful's [Static Kit](https://github.com/wndrfl/s
 
 1. Download the theme into your Wordpress installation
 1. Run `$ npm install`
-1. Static Kit will automatically be installed and prepared in the `/static` directory
-1. Navigate to `/static` and run `$ gulp`
+1. Static Kit will automatically be installed and prepared in the theme directory
+1. Run `$ gulp`
 
