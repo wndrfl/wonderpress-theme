@@ -31,15 +31,15 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_theme_support( 'automatic-feed-links' );
 
 	// Localisation Support
-	//load_theme_textdomain('brass-tacks', get_template_directory() . '/languages');
+	//load_theme_textdomain('bt', get_template_directory() . '/languages');
 }
 
 /*------------------------------------*\
 	Functions
 \*------------------------------------*/
 
-// brass-tacks Blank navigation
-function brass-tacks_nav( $location = 'header-menu' ) {
+// bt Blank navigation
+function bt_nav( $location = 'header-menu' ) {
 	wp_nav_menu(
 		array(
 			'theme_location'  => $location,
@@ -62,7 +62,7 @@ function brass-tacks_nav( $location = 'header-menu' ) {
 	);
 }
 
-function brass-tacks_header_scripts() {
+function bt_header_scripts() {
 	if ( 'wp-login.php' !== $GLOBALS['pagenow'] && ! is_admin() ) {
 
 		// remove jquery
@@ -77,15 +77,15 @@ function brass-tacks_header_scripts() {
 	}
 }
 
-function brass-tacks_conditional_scripts() {
+function bt_conditional_scripts() {
 	// if (is_page('pagenamehere')) {
 	//     wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
 	//     wp_enqueue_script('scriptname'); // Enqueue it!
 	// }
 }
 
-// Load brass-tacks styles
-function brass-tacks_styles() {
+// Load bt styles
+function bt_styles() {
 
 	// remove dashicons
 	wp_deregister_style( 'dashicons' );
@@ -100,8 +100,8 @@ function brass-tacks_styles() {
 	wp_enqueue_style( 'theme' ); // Enqueue it!
 }
 
-// Register brass-tacks Navigation
-function register_brass-tacks_menu() {
+// Register bt Navigation
+function register_bt_menu() {
 	register_nav_menus(
 		array( // Using array to specify more menus if needed
 			'header-menu'  => 'Header Menu', // Main Navigation
@@ -193,7 +193,7 @@ function my_remove_recent_comments_style() {
 }
 
 // Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
-function brass-tacks_pagination() {
+function bt_pagination() {
 	global $wp_query;
 	$big = 999999999;
 	echo paginate_links(
@@ -207,18 +207,18 @@ function brass-tacks_pagination() {
 }
 
 // Custom Excerpts
-function brass-tacks_index( $length ) {
-	// Create 20 Word Callback for Index page Excerpts, call using brass-tacks_excerpt('brass-tacks_index');
+function bt_index( $length ) {
+	// Create 20 Word Callback for Index page Excerpts, call using bt_excerpt('bt_index');
 	return 50;
 }
 
-// Create 40 Word Callback for Custom Post Excerpts, call using brass-tacks_excerpt('brass-tacks_custom_post');
-function brass-tacks_custom_post( $length ) {
+// Create 40 Word Callback for Custom Post Excerpts, call using bt_excerpt('bt_custom_post');
+function bt_custom_post( $length ) {
 	return 40;
 }
 
 // Create the Custom Excerpts callback
-function brass-tacks_excerpt( $length_callback = '', $more_callback = '' ) {
+function bt_excerpt( $length_callback = '', $more_callback = '' ) {
 	global $post;
 	if ( function_exists( $length_callback ) ) {
 		add_filter( 'excerpt_length', $length_callback );
@@ -234,9 +234,9 @@ function brass-tacks_excerpt( $length_callback = '', $more_callback = '' ) {
 }
 
 // Custom View Article link to Post
-function brass-tacks_blank_view_article( $more ) {
+function bt_blank_view_article( $more ) {
 	global $post;
-	return '...<br /><a class="btn btn-orange" href="' . get_permalink( $post->ID ) . '">' . __( 'Read More', 'brass-tacks' ) . '</a>';
+	return '...<br /><a class="btn btn-orange" href="' . get_permalink( $post->ID ) . '">' . __( 'Read More', 'bt' ) . '</a>';
 }
 
 // Remove Admin bar
@@ -245,7 +245,7 @@ function remove_admin_bar() {
 }
 
 // Remove 'text/css' from our enqueued stylesheet
-function brass-tacks_style_remove( $tag ) {
+function bt_style_remove( $tag ) {
 	return preg_replace( '~\s+type=["\'][^"\']++["\']~', '', $tag );
 }
 
@@ -256,7 +256,7 @@ function remove_thumbnail_dimensions( $html ) {
 }
 
 // Custom Gravatar in Settings > Discussion
-function brass-tacksgravatar( $avatar_defaults ) {
+function btgravatar( $avatar_defaults ) {
 	$myavatar                     = get_template_directory_uri() . '/img/gravatar.jpg';
 	$avatar_defaults[ $myavatar ] = 'Custom Gravatar';
 	return $avatar_defaults;
@@ -276,14 +276,14 @@ function enable_threaded_comments() {
 \*------------------------------------*/
 
 // Add Actions
-add_action( 'init', 'brass-tacks_header_scripts' ); // Add Custom Scripts to wp_head
-add_action( 'wp_print_scripts', 'brass-tacks_conditional_scripts' ); // Add Conditional Page Scripts
+add_action( 'init', 'bt_header_scripts' ); // Add Custom Scripts to wp_head
+add_action( 'wp_print_scripts', 'bt_conditional_scripts' ); // Add Conditional Page Scripts
 add_action( 'get_header', 'enable_threaded_comments' ); // Enable Threaded Comments
-add_action( 'wp_enqueue_scripts', 'brass-tacks_styles' ); // Add Theme Stylesheet
-add_action( 'init', 'register_brass-tacks_menu' ); // Add brass-tacks Blank Menu
-add_action( 'init', 'create_post_type_brass-tacks' ); // Add our brass-tacks Blank Custom Post Type
+add_action( 'wp_enqueue_scripts', 'bt_styles' ); // Add Theme Stylesheet
+add_action( 'init', 'register_bt_menu' ); // Add bt Blank Menu
+add_action( 'init', 'create_post_type_bt' ); // Add our bt Blank Custom Post Type
 add_action( 'widgets_init', 'my_remove_recent_comments_style' ); // Remove inline Recent Comment Styles from wp_head()
-add_action( 'init', 'brass-tacks_pagination' ); // Add our brass-tacks Pagination
+add_action( 'init', 'bt_pagination' ); // Add our bt Pagination
 
 // Remove Actions
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -304,7 +304,7 @@ remove_action( 'wp_head', 'rel_canonical' );
 remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
 
 // Add Filters
-add_filter( 'avatar_defaults', 'brass-tacksgravatar' ); // Custom Gravatar in Settings > Discussion
+add_filter( 'avatar_defaults', 'btgravatar' ); // Custom Gravatar in Settings > Discussion
 add_filter( 'body_class', 'add_slug_to_body_class' ); // Add slug to body class (Starkers build)
 add_filter( 'widget_text', 'do_shortcode' ); // Allow shortcodes in Dynamic Sidebar
 add_filter( 'widget_text', 'shortcode_unautop' ); // Remove <p> tags in Dynamic Sidebars (better!)
@@ -315,9 +315,9 @@ add_filter( 'wp_nav_menu_args', 'my_wp_nav_menu_args' ); // Remove surrounding <
 add_filter( 'the_category', 'remove_category_rel_from_category_list' ); // Remove invalid rel attribute
 add_filter( 'the_excerpt', 'shortcode_unautop' ); // Remove auto <p> tags in Excerpt (Manual Excerpts only)
 add_filter( 'the_excerpt', 'do_shortcode' ); // Allows Shortcodes to be executed in Excerpt (Manual Excerpts only)
-add_filter( 'excerpt_more', 'brass-tacks_blank_view_article' ); // Add 'View Article' button instead of [...] for Excerpts
+add_filter( 'excerpt_more', 'bt_blank_view_article' ); // Add 'View Article' button instead of [...] for Excerpts
 add_filter( 'show_admin_bar', 'remove_admin_bar' ); // Remove Admin bar
-add_filter( 'style_loader_tag', 'brass-tacks_style_remove' ); // Remove 'text/css' from enqueued stylesheet
+add_filter( 'style_loader_tag', 'bt_style_remove' ); // Remove 'text/css' from enqueued stylesheet
 add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10 ); // Remove width and height dynamic attributes to thumbnails
 add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
 add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
@@ -326,18 +326,18 @@ add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 ); // Remove wi
 remove_filter( 'the_excerpt', 'wpautop' ); // Remove <p> tags from Excerpt altogether
 
 // Shortcodes
-add_shortcode( 'brass-tacks_shortcode_demo', 'brass-tacks_shortcode_demo' ); // You can place [brass-tacks_shortcode_demo] in Pages, Posts now.
-add_shortcode( 'brass-tacks_shortcode_demo_2', 'brass-tacks_shortcode_demo_2' ); // Place [brass-tacks_shortcode_demo_2] in Pages, Posts now.
+add_shortcode( 'bt_shortcode_demo', 'bt_shortcode_demo' ); // You can place [bt_shortcode_demo] in Pages, Posts now.
+add_shortcode( 'bt_shortcode_demo_2', 'bt_shortcode_demo_2' ); // Place [bt_shortcode_demo_2] in Pages, Posts now.
 
 // Shortcodes above would be nested like this -
-// [brass-tacks_shortcode_demo] [brass-tacks_shortcode_demo_2] Here's the page title! [/brass-tacks_shortcode_demo_2] [/brass-tacks_shortcode_demo]
+// [bt_shortcode_demo] [bt_shortcode_demo_2] Here's the page title! [/bt_shortcode_demo_2] [/bt_shortcode_demo]
 
 /*------------------------------------*\
 	Custom Post Types
 \*------------------------------------*/
 
 // Create 1 Custom Post type for a Demo
-function create_post_type_brass-tacks() {
+function create_post_type_bt() {
 	//register_taxonomy_for_object_type('category', 'inventory-item'); // Register Taxonomies for Category
 	//register_taxonomy_for_object_type('post_tag', 'inventory-item');
 	register_post_type(
@@ -396,12 +396,12 @@ function create_post_type_brass-tacks() {
 \*------------------------------------*/
 
 // Shortcode Demo with Nested Capability
-function brass-tacks_shortcode_demo( $atts, $content = null ) {
+function bt_shortcode_demo( $atts, $content = null ) {
 	return '<div class="shortcode-demo">' . do_shortcode( $content ) . '</div>'; // do_shortcode allows for nested Shortcodes
 }
 
 // Shortcode Demo with simple <h2> tag
-function brass-tacks_shortcode_demo_2( $atts, $content = null ) {
+function bt_shortcode_demo_2( $atts, $content = null ) {
 	// Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
 	return '<h2>' . $content . '</h2>';
 }

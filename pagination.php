@@ -1,5 +1,5 @@
 <!-- pagination -->
 <div class="pagination">
-	<?php brass-tacks_pagination(); ?>
+	<?php bt_pagination(); ?>
 </div>
 <!-- /pagination -->

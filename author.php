@@ -11,7 +11,7 @@
 
 			<h1>
 			<?php
-			_e( 'Author Archives for ', 'brass-tacks' );
+			_e( 'Author Archives for ', 'bt' );
 			echo get_the_author();
 			?>
 			</h1>
@@ -22,7 +22,7 @@
 
 			<h2>
 				<?php
-				_e( 'About ', 'brass-tacks' );
+				_e( 'About ', 'bt' );
 				echo get_the_author();
 				?>
 			</h2>
@@ -60,11 +60,11 @@
 						<?php the_date(); ?> <?php the_time(); ?>
 					</time>
 				</span>
-				<span class="author"><?php _e( 'Published by', 'brass-tacks' ); ?> <?php the_author_posts_link(); ?></span>
-				<span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'brass-tacks' ), __( '1 Comment', 'brass-tacks' ), __( '% Comments', 'brass-tacks' ) ); ?></span>
+				<span class="author"><?php _e( 'Published by', 'bt' ); ?> <?php the_author_posts_link(); ?></span>
+				<span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'bt' ), __( '1 Comment', 'bt' ), __( '% Comments', 'bt' ) ); ?></span>
 				<!-- /post details -->
 
-				<?php brass-tacks_excerpt( 'brass-tacks_index' ); // Build your custom callback length in functions.php ?>
+				<?php bt_excerpt( 'bt_index' ); // Build your custom callback length in functions.php ?>
 
 				<br class="clear">
 
@@ -80,7 +80,7 @@
 			<!-- article -->
 			<article>
 
-				<h2><?php _e( 'Sorry, nothing to display.', 'brass-tacks' ); ?></h2>
+				<h2><?php _e( 'Sorry, nothing to display.', 'bt' ); ?></h2>
 
 			</article>
 			<!-- /article -->

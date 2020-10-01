@@ -6,7 +6,7 @@
 
 			<h1>
 			<?php
-			_e( 'Tag Archive: ', 'brass-tacks' );
+			_e( 'Tag Archive: ', 'bt' );
 			echo single_tag_title( '', false );
 			?>
 			</h1>

@@ -46,7 +46,7 @@
 			</div>
 
 			<nav class="theme-header-nav hidden-xs" role="navigation">
-				<?php brass-tacks_nav( 'header-menu' ); ?>
+				<?php bt_nav( 'header-menu' ); ?>
 			</nav>
 
 			<a href="#" id="theme-header-hamburger" class="theme-header-hamburger visible-xs-block">
