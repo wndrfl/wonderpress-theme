@@ -1,23 +1,23 @@
 {
-  "name": "bt",
+  "name": "brass-tacks",
   "version": "1.0.0",
   "devDependencies": {
     "@wndrfl/static-kit-cli": "^1.1.4"
   },
   "scripts": {
-    "postinstall": "npx statickit static && cd static && npm install",
+    "postinstall": "npx statickit . && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wndrfl/bt.git"
+    "url": "git+https://github.com/wndrfl/brass-tacks.git"
   },
   "author": "Johnnie Munger <johnnie@wonderful.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wndrfl/bt/issues"
+    "url": "https://github.com/wndrfl/brass-tacks/issues"
   },
-  "homepage": "https://github.com/wndrfl/bt",
+  "homepage": "https://github.com/wndrfl/brass-tacks",
   "description": "The official Wonderful boilerplate theme for WordPress.",
   "keywords": [],
   "dependencies": {}
