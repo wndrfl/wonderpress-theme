@@ -4,7 +4,7 @@
 		<!-- section -->
 		<section>
 
-			<h1><?php _e( 'Archives', 'bebop' ); ?></h1>
+			<h1><?php _e( 'Archives', 'bt' ); ?></h1>
 
 			<?php get_template_part( 'loop' ); ?>
 

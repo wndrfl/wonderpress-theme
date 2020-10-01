@@ -1,5 +1,5 @@
 <!-- pagination -->
 <div class="pagination">
-	<?php bebop_pagination(); ?>
+	<?php bt_pagination(); ?>
 </div>
 <!-- /pagination -->

@@ -7,7 +7,7 @@
 			<h1>
 			<?php
 			/* translators: %s: search term */
-			echo sprintf( __( '%s Search Results for ', 'bebop' ), $wp_query->found_posts );
+			echo sprintf( __( '%s Search Results for ', 'bt' ), $wp_query->found_posts );
 			echo get_search_query();
 			?>
 			</h1>
