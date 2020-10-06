@@ -11,3 +11,12 @@ This theme leans heavily on Wonderful's [Static Kit](https://github.com/wndrfl/s
 1. Static Kit will automatically be installed and prepared in the theme directory
 1. Run `$ gulp`
 
+## Linting
+
+Brass Tacks includes tools to lint your code against the [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards).
+
+To lint your code:
+
+1. Install all dependencies with `$ composer install`
+1. Run the linter with `$ composer run lint`
+
