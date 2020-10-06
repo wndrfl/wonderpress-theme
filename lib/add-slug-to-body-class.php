@@ -2,7 +2,7 @@
 /**
  * Adds the slug of the current page or post as a class to the <body> tag
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
@@ -10,7 +10,7 @@
  *
  * @param mixed[] $classes An array of classes for the body tag.
  */
-function bt_add_slug_to_body_class( $classes ) {
+function wonder_add_slug_to_body_class( $classes ) {
 	global $post;
 	if ( is_home() ) {
 		$key = array_search( 'blog', $classes, true );
@@ -26,4 +26,4 @@ function bt_add_slug_to_body_class( $classes ) {
 	return $classes;
 }
 
-add_filter( 'body_class', 'bt_add_slug_to_body_class' );
+add_filter( 'body_class', 'wonder_add_slug_to_body_class' );

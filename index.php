@@ -2,11 +2,11 @@
 /**
  * The index page template.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 // Set the <body> id
-bt_body_id( 'index' );
+wonder_body_id( 'index' );
 
 get_header();
 ?>

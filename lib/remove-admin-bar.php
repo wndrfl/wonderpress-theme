@@ -2,7 +2,7 @@
 /**
  * Remove the WordPress admin bar.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**

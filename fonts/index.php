@@ -2,7 +2,7 @@
 /**
  * Silence is golden
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 ?>

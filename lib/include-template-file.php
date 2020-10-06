@@ -2,7 +2,7 @@
 /**
  * A function to include template files
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
@@ -12,7 +12,7 @@
  * @param Mixed[] $_params An array of variables to pass to the template.
  * @param Boolean $_return Whether to return the contents (instead of echoing them).
  */
-function bt_include_template_file( $_filename, $_params = array(), $_return = false ) {
+function wonder_include_template_file( $_filename, $_params = array(), $_return = false ) {
 	if ( $_return ) {
 		$html = '';
 		ob_start();

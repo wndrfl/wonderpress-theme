@@ -2,7 +2,7 @@
 /**
  * Global functions.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**

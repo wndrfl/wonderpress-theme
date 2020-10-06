@@ -3,11 +3,11 @@
  * Template Name: Home Page Template
  * Description: A custom Home Page template.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 // Set the <body> id
-bt_body_id( 'home' );
+wonder_body_id( 'home' );
 
 get_header();
 ?>

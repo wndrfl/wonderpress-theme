@@ -2,13 +2,13 @@
 /**
  * Remove inline Recent Comment Styles from wp_head()
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
  * Remove recent_comments_style from wp_head
  */
-function bt_remove_recent_comments_style() {
+function wonder_remove_recent_comments_style() {
 	global $wp_widget_factory;
 	remove_action(
 		'wp_head',
@@ -19,4 +19,4 @@ function bt_remove_recent_comments_style() {
 	);
 }
 
-add_action( 'widgets_init', 'bt_remove_recent_comments_style' );
+add_action( 'widgets_init', 'wonder_remove_recent_comments_style' );

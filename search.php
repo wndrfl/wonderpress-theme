@@ -2,11 +2,11 @@
 /**
  * The theme search page template.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 // Set the <body> id
-bt_body_id( 'search' );
+wonder_body_id( 'search' );
 
 get_header();
 ?>

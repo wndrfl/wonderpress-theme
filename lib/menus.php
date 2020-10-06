@@ -2,13 +2,13 @@
 /**
  * Register all menu locations for the WordPress CMS
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
  * Register nav menus
  */
-function bt_register_menu() {
+function wonder_register_menu() {
 	register_nav_menus(
 		array(
 			'header-menu'  => 'Header Menu',
@@ -18,4 +18,4 @@ function bt_register_menu() {
 	);
 }
 
-add_action( 'init', 'bt_register_menu' );
+add_action( 'init', 'wonder_register_menu' );

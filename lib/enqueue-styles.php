@@ -2,13 +2,13 @@
 /**
  * Enqueue any stylesheets to be used in this theme.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
  * Enqueue styles
  */
-function bt_enqueue_styles() {
+function wonder_enqueue_styles() {
 
 	// remove dashicons
 	wp_deregister_style( 'dashicons' );
@@ -20,4 +20,4 @@ function bt_enqueue_styles() {
 	wp_enqueue_style( 'theme' ); // Enqueue it!
 }
 
-add_action( 'wp_enqueue_scripts', 'bt_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'wonder_enqueue_styles' );

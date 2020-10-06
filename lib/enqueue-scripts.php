@@ -2,14 +2,14 @@
 /**
  * Enqueue any javascript files to be used in this theme.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
  * Enqueue scripts
  * These scrips will be added to the
  */
-function bt_enqueue_scripts() {
+function wonder_enqueue_scripts() {
 	if ( 'wp-login.php' !== $GLOBALS['pagenow'] && ! is_admin() ) {
 
 		// Remove the built-in WordPress copy of jQuery
@@ -21,4 +21,4 @@ function bt_enqueue_scripts() {
 	}
 }
 
-add_action( 'init', 'bt_enqueue_scripts' );
+add_action( 'init', 'wonder_enqueue_scripts' );

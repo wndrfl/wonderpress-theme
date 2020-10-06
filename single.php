@@ -2,11 +2,11 @@
 /**
  * The template for displaying a single post.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 // Set the <body> id
-bt_body_id( 'single' );
+wonder_body_id( 'single' );
 
 get_header();
 ?>

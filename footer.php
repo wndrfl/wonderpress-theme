@@ -2,14 +2,14 @@
 /**
  * The template for displaying a footer.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 ?>
 		<footer class="theme-footer" role="contentinfo">
 			<div class="container">
 				<nav class="theme-footer-nav">
-					<?php bt_nav( 'footer-menu' ); ?>
+					<?php wonder_nav( 'footer-menu' ); ?>
 				</nav>
 			</div>
 		</footer>
@@ -17,7 +17,7 @@
 		<?php wp_footer(); ?>
 
 		<div id="theme-mobile-nav" class="theme-mobile-nav visible-xs-block">
-			<?php bt_nav( 'header-menu' ); ?>
+			<?php wonder_nav( 'header-menu' ); ?>
 		</div>
 	</body>
 </html>

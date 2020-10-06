@@ -2,7 +2,7 @@
 /**
  * A reusable WordPress Loop
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 ?>

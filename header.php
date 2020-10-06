@@ -2,7 +2,7 @@
 /**
  * The template for displaying a header.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 ?>
@@ -30,7 +30,7 @@
 	ga('send', 'pageview');
 	</script>
 </head>
-<body <?php bt_body_id(); ?> <?php body_class(); ?>>
+<body <?php wonder_body_id(); ?> <?php body_class(); ?>>
 
 	<header id="theme-header" class="theme-header clear" role="banner">
 		<div class="container">
@@ -40,7 +40,7 @@
 			</div>
 
 			<nav class="theme-header-nav hidden-xs" role="navigation">
-				<?php bt_nav( 'header-menu' ); ?>
+				<?php wonder_nav( 'header-menu' ); ?>
 			</nav>
 
 			<a href="#" id="theme-header-hamburger" class="theme-header-hamburger visible-xs-block">

@@ -3,7 +3,7 @@
  * A custom WordPress navigation function to use with
  * WordPress menus.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
@@ -11,7 +11,7 @@
  *
  * @param String $location The name the navigation location to hook into.
  */
-function bt_nav( $location = 'header-menu' ) {
+function wonder_nav( $location = 'header-menu' ) {
 	wp_nav_menu(
 		array(
 			'theme_location'  => $location,

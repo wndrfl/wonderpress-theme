@@ -2,11 +2,11 @@
 /**
  * The category page template.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 // Set the <body> id
-bt_body_id( 'category' );
+wonder_body_id( 'category' );
 
 get_header();
 ?>

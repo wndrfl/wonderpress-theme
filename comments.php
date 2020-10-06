@@ -2,7 +2,7 @@
 /**
  * The comments template.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 ?>

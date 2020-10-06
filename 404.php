@@ -2,11 +2,11 @@
 /**
  * The 404 page template.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 // Set the <body> id
-bt_body_id( '404' );
+wonder_body_id( '404' );
 
 get_header();
 ?>

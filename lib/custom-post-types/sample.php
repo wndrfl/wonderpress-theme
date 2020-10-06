@@ -2,13 +2,13 @@
 /**
  * Create a custom post type
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
  * Uses register_post_type() to create a custom post type.
  */
-function bt_create_post_type() {
+function wonder_create_post_type() {
 	register_post_type(
 		'sample-type',
 		array(
@@ -44,4 +44,4 @@ function bt_create_post_type() {
 	);
 }
 
-add_action( 'init', 'bt_create_post_type' );
+add_action( 'init', 'wonder_create_post_type' );

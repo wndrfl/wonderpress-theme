@@ -2,7 +2,7 @@
 /**
  * Set / get the <body> ID
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
@@ -10,7 +10,7 @@
  *
  * @param String $body_id The ID of the body tag.
  */
-function bt_body_id( $body_id = null ) {
+function wonder_body_id( $body_id = null ) {
 	static $_body_id;
 
 	if ( ! is_null( $body_id ) ) {

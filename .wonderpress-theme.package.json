@@ -1,5 +1,5 @@
 {
-  "name": "brass-tacks",
+  "name": "wonderpress-theme",
   "version": "1.0.0",
   "devDependencies": {
   },
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wndrfl/brass-tacks.git"
+    "url": "git+https://github.com/wndrfl/wonderpress-theme.git"
   },
   "author": "Johnnie Munger <johnnie@wonderful.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wndrfl/brass-tacks/issues"
+    "url": "https://github.com/wndrfl/wonderpress-theme/issues"
   },
-  "homepage": "https://github.com/wndrfl/brass-tacks",
+  "homepage": "https://github.com/wndrfl/wonderpress-theme",
   "description": "The official Wonderful boilerplate theme for WordPress.",
   "keywords": [],
   "dependencies": {}

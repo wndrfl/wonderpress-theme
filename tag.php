@@ -2,11 +2,11 @@
 /**
  * The tag page template.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 // Set the <body> id
-bt_body_id( 'tag' );
+wonder_body_id( 'tag' );
 
 get_header();
 ?>

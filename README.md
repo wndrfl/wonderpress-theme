@@ -1,6 +1,6 @@
-# ✨ Brass Tacks
+# ✨ Wonderpress Theme
 
-Brass Tacks is the official Wonderful boilerplate theme for WordPress. The goal is to provide coverage for the basics of a WordPress theme, without imposing opinion on styles or structure.
+Wonderpress Theme is the official Wonderful boilerplate theme for WordPress. The goal is to provide coverage for the basics of a WordPress theme, without imposing opinion on styles or structure.
 
 This theme leans heavily on Wonderful's [Static Kit](https://github.com/wndrfl/static-kit) development environment.
 
@@ -13,7 +13,7 @@ This theme leans heavily on Wonderful's [Static Kit](https://github.com/wndrfl/s
 
 ## Linting
 
-Brass Tacks includes tools to lint your code against the [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards).
+Wonderpress Theme includes tools to lint your code against the [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards).
 
 To lint your code:
 

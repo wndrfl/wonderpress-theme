@@ -2,11 +2,11 @@
 /**
  * The template for displaying an author's postss
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 // Set the <body> id
-bt_body_id( 'author' );
+wonder_body_id( 'author' );
 
 get_header();
 ?>

@@ -2,7 +2,7 @@
 /**
  * Set image sizes for the WordPress CMS
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 if ( function_exists( 'add_theme_support' ) ) {

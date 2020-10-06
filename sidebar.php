@@ -2,7 +2,7 @@
 /**
  * The template for displaying a sidebar.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 ?>

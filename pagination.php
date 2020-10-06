@@ -2,7 +2,7 @@
 /**
  * The pagination template.
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 ?>

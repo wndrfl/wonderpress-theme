@@ -2,11 +2,11 @@
 /**
  * The template for displaying a page
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 // Set the <body> id
-bt_body_id( 'page' );
+wonder_body_id( 'page' );
 
 get_header();
 ?>

@@ -2,7 +2,7 @@
 /**
  * Adds localisation support to a WordPress theme
  *
- * @package Brass Tacks
+ * @package Wonderpress Theme
  */
 
 /**
