@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying a page
+ *
+ * @package Brass Tacks
+ */
+
+get_header();
+?>
 
 	<main role="main">
 		<!-- section -->
@@ -17,7 +25,7 @@
 
 				<?php the_content(); ?>
 
-				<?php comments_template( '', true ); // Remove if you don't want comments ?>
+				<?php comments_template( '', true ); // Remove if you don't want comments. ?>
 
 				<br class="clear">
 
@@ -33,7 +41,7 @@
 			<!-- article -->
 			<article>
 
-				<h2><?php _e( 'Sorry, nothing to display.', 'bt' ); ?></h2>
+				<h2><?php esc_html_e( 'Sorry, nothing to display.', 'bt' ); ?></h2>
 
 			</article>
 			<!-- /article -->

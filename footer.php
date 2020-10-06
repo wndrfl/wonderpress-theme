@@ -1,3 +1,11 @@
+<?php
+/**
+ * The template for displaying a footer.
+ *
+ * @package Brass Tacks
+ */
+
+?>
 		<footer class="theme-footer" role="contentinfo">
 			<div class="container">
 				<nav class="theme-footer-nav">

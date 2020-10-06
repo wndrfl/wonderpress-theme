@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying a single post.
+ *
+ * @package Brass Tacks
+ */
+
+get_header();
+?>
 
 	<main role="main">
 	<!-- section -->
@@ -14,9 +22,9 @@
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 			<!-- post thumbnail -->
-			<?php if ( has_post_thumbnail() ) : // Check if Thumbnail exists ?>
+			<?php if ( has_post_thumbnail() ) : // Check if Thumbnail exists. ?>
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail(); // Fullsize image for the single post ?>
+					<?php the_post_thumbnail(); // Fullsize image for the single post. ?>
 				</a>
 			<?php endif; ?>
 			<!-- /post thumbnail -->
@@ -33,7 +41,7 @@
 					<?php the_date(); ?> <?php the_time(); ?>
 				</time>
 			</span>
-			<span class="author"><?php _e( 'Published by', 'bt' ); ?> <?php the_author_posts_link(); ?></span>
+			<span class="author"><?php esc_html_e( 'Published by', 'bt' ); ?> <?php the_author_posts_link(); ?></span>
 			<span class="comments">
 			<?php
 			if ( comments_open( get_the_ID() ) ) {
@@ -42,25 +50,25 @@
 			</span>
 			<!-- /post details -->
 
-			<?php the_content(); // Dynamic Content ?>
+			<?php the_content(); ?>
 
-			<?php the_tags( __( 'Tags: ', 'bt' ), ', ', '<br>' ); // Separated by commas with a line break at the end ?>
+			<?php the_tags( __( 'Tags: ', 'bt' ), ', ', '<br>' ); ?>
 
 			<p>
 			<?php
-			_e( 'Categorised in: ', 'bt' );
-			the_category( ', ' ); // Separated by commas
+			esc_html_e( 'Categorised in: ', 'bt' );
+			the_category( ', ' );
 			?>
 			</p>
 
 			<p>
 			<?php
-			_e( 'This post was written by ', 'bt' );
+			esc_html_e( 'This post was written by ', 'bt' );
 			the_author();
 			?>
 			</p>
 
-					<?php edit_post_link(); // Always handy to have Edit Post Links available ?>
+					<?php edit_post_link(); ?>
 
 					<?php comments_template(); ?>
 
@@ -74,7 +82,7 @@
 		<!-- article -->
 		<article>
 
-			<h1><?php _e( 'Sorry, nothing to display.', 'bt' ); ?></h1>
+			<h1><?php esc_html_e( 'Sorry, nothing to display.', 'bt' ); ?></h1>
 
 		</article>
 		<!-- /article -->

@@ -1,17 +1,27 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The archive page template.
+ *
+ * @package Brass Tacks
+ */
+
+get_header();
+?>
 
 	<main role="main">
-		<!-- section -->
+
 		<section>
 
-			<h1><?php _e( 'Archives', 'bt' ); ?></h1>
+			<h1>
+				<?php echo esc_html_e( 'Archives', 'bt' ); ?>
+			</h1>
 
 			<?php get_template_part( 'loop' ); ?>
 
 			<?php get_template_part( 'pagination' ); ?>
 
 		</section>
-		<!-- /section -->
+
 	</main>
 
 <?php get_sidebar(); ?>

@@ -8,8 +8,8 @@
     <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>
 
-    <!-- Ignore dirs -->
-    <arg name="ignore" value="vendor"/>
+    <!-- Exclude files -->
+    <arg name="ignore" value="./vendor"/>
 
     <!-- Show colors in console -->
     <arg value="-colors"/>
@@ -18,7 +18,11 @@
     <arg value="ns"/>
 
     <!-- Include the WordPress standard. -->
-    <rule ref="WordPress"/>
+    <rule ref="WordPress">
+        <!-- Exclude any rules here -->
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+        <exclude name="WordPress.VIP.AdminBarRemoval.RemovalDetected"/>
+    </rule>
 
     <!-- Add in some extra rules from other standards. -->
     <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>

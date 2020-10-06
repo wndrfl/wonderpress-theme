@@ -1,6 +1,16 @@
+<?php
+/**
+ * The comments template.
+ *
+ * @package Brass Tacks
+ */
+
+?>
 <div class="comments">
 	<?php if ( post_password_required() ) : ?>
-	<p><?php _e( 'Post is password protected. Enter the password to view any comments.', 'bt' ); ?></p>
+	<p>
+		<?php echo esc_html_e( 'Post is password protected. Enter the password to view any comments.', 'bt' ); ?>
+	</p>
 </div>
 
 		<?php
@@ -13,12 +23,14 @@ endif;
 	<h2><?php comments_number(); ?></h2>
 
 	<ul>
-		<?php wp_list_comments( 'type=comment&callback=btcomments' ); // Custom callback in functions.php ?>
+		<?php wp_list_comments( 'type=comment' ); ?>
 	</ul>
 
 <?php elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 
-	<p><?php _e( 'Comments are closed here.', 'bt' ); ?></p>
+	<p>
+		<?php echo esc_html_e( 'Comments are closed here.', 'bt' ); ?>
+	</p>
 
 <?php endif; ?>
 

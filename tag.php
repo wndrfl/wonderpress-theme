@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The tag page template.
+ *
+ * @package Brass Tacks
+ */
+
+ get_header();
+?>
 
 	<main role="main">
 		<!-- section -->
@@ -6,7 +14,7 @@
 
 			<h1>
 			<?php
-			_e( 'Tag Archive: ', 'bt' );
+			echo esc_html_e( 'Tag Archive: ', 'bt' );
 			echo single_tag_title( '', false );
 			?>
 			</h1>

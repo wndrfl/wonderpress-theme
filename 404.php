@@ -1,22 +1,32 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The 404 page template.
+ *
+ * @package Brass Tacks
+ */
+
+get_header();
+?>
 
 	<main role="main">
-		<!-- section -->
+
 		<section>
 
-			<!-- article -->
 			<article id="post-404">
 
-				<h1><?php _e( 'Page not found', 'bt' ); ?></h1>
+				<h1>
+					<?php echo esc_html_e( 'Page not found', 'bt' ); ?>
+				</h1>
 				<h2>
-					<a href="<?php echo home_url(); ?>"><?php _e( 'Return home?', 'bt' ); ?></a>
+					<a href="<?php echo esc_url( home_url() ); ?>">
+						<?php echo esc_html_e( 'Return home?', 'bt' ); ?>
+					</a>
 				</h2>
 
 			</article>
-			<!-- /article -->
 
 		</section>
-		<!-- /section -->
+
 	</main>
 
 <?php get_sidebar(); ?>
