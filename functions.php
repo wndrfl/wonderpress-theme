@@ -19,7 +19,7 @@ function require_all( $path ) {
 /**
  * Import PHP files from ./lib/ directory
  */
-require_all( dirname( __FILE__ ) . 'lib/' );
+require_all( dirname( __FILE__ ) . '/lib/' );
 
 
 /**
@@ -36,13 +36,13 @@ if ( function_exists( 'add_theme_support' ) ) {
  * Custom Post Types
  */
 
-require_all( dirname( __FILE__ ) . 'lib/custom-post-types/' );
+require_all( dirname( __FILE__ ) . '/lib/custom-post-types/' );
 
 /**
  * Shortcodes
  */
 
-require_all( dirname( __FILE__ ) . 'lib/shortcodes/' );
+require_all( dirname( __FILE__ ) . '/lib/shortcodes/' );
 
 
 /**

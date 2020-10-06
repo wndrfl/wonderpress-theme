@@ -73,9 +73,9 @@ get_header();
 				<span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'bt' ), __( '1 Comment', 'bt' ), __( '% Comments', 'bt' ) ); ?></span>
 				<!-- /post details -->
 
-				<?php btesc_html_excerpt( 'bt_index' ); // Build your custom callback length in functions.php. ?>
+				<?php the_excerpt(); ?>
 
-				<br class="clear">
+				<br />
 
 				<?php edit_post_link(); ?>
 

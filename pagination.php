@@ -7,5 +7,6 @@
 
 ?>
 <div class="pagination">
-	<?php bt_pagination(); ?>
+	<div class="pagination-previous"><?php previous_posts_link( 'Older posts' ); ?></div>
+	<div class="pagination-next"><?php next_posts_link( 'Newer posts' ); ?></div>
 </div>
