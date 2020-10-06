@@ -9,7 +9,7 @@
 <div class="comments">
 	<?php if ( post_password_required() ) : ?>
 	<p>
-		<?php echo esc_html_e( 'Post is password protected. Enter the password to view any comments.', 'bt' ); ?>
+		<?php esc_html_e( 'Post is password protected. Enter the password to view any comments.', 'bt' ); ?>
 	</p>
 </div>
 
@@ -29,7 +29,7 @@ endif;
 <?php elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 
 	<p>
-		<?php echo esc_html_e( 'Comments are closed here.', 'bt' ); ?>
+		<?php esc_html_e( 'Comments are closed here.', 'bt' ); ?>
 	</p>
 
 <?php endif; ?>

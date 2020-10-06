@@ -17,7 +17,7 @@ get_header();
 
 			<h1>
 			<?php
-			echo esc_html_e( 'Categories for ', 'bt' );
+			esc_html_e( 'Categories for ', 'bt' );
 			single_cat_title();
 			?>
 			</h1>

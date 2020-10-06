@@ -16,7 +16,7 @@ get_header();
 		<section>
 
 			<h1>
-				<?php echo esc_html_e( 'Latest Posts', 'bt' ); ?>
+				<?php esc_html_e( 'Latest Posts', 'bt' ); ?>
 			</h1>
 
 			<?php get_template_part( 'loop' ); ?>

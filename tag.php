@@ -17,7 +17,7 @@ get_header();
 
 			<h1>
 			<?php
-			echo esc_html_e( 'Tag Archive: ', 'bt' );
+			esc_html_e( 'Tag Archive: ', 'bt' );
 			echo single_tag_title( '', false );
 			?>
 			</h1>
