@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="Wonderful">
-    <description>Wonderful Wordpress Coding Standards</description>
+    <description>Wonderpress Coding Standards</description>
 
     <!-- Scan all files in directory -->
     <file>.</file>
