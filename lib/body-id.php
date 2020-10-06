@@ -1,6 +1,6 @@
 <?php
 /**
- * Set the <body> ID
+ * Set / get the <body> ID
  *
  * @package Brass Tacks
  */
@@ -15,7 +15,8 @@ function bt_body_id( $body_id = null ) {
 
 	if ( ! is_null( $body_id ) ) {
 		$_body_id = $body_id;
+		return;
 	}
 
-	return $_body_id;
+	return 'id="' . ( $_body_id ? $_body_id : 'body' ) . '"';
 }
