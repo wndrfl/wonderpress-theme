@@ -5,6 +5,9 @@
  * @package Brass Tacks
  */
 
+// Set the <body> id
+bt_body_id( 'author' );
+
 get_header();
 ?>
 

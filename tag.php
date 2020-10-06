@@ -5,7 +5,10 @@
  * @package Brass Tacks
  */
 
- get_header();
+// Set the <body> id
+bt_body_id( 'tag' );
+
+get_header();
 ?>
 
 	<main role="main">

@@ -5,6 +5,9 @@
  * @package Brass Tacks
  */
 
+// Set the <body> id
+bt_body_id( 'category' );
+
 get_header();
 ?>
 
@@ -24,7 +27,7 @@ get_header();
 			<?php get_template_part( 'pagination' ); ?>
 
 		</section>
-		
+
 	</main>
 
 <?php get_sidebar(); ?>
