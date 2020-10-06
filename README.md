@@ -20,3 +20,7 @@ To lint your code:
 1. Install all dependencies with `$ composer install`
 1. Run the linter with `$ composer run lint`
 
+To automatically fix errors found during lint:
+
+`$ composer run lint-fix`
+

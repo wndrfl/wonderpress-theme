@@ -1,12 +1,13 @@
 <?php
 
-/*------------------------------------*\
+/*
+------------------------------------*\
 	External Modules/Files
 \*------------------------------------*/
 
 // Load any external files you have here
-
-/*------------------------------------*\
+/*
+------------------------------------*\
 	Theme Support
 \*------------------------------------*/
 
@@ -23,18 +24,18 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_image_size( 'large', 700, '', true ); // Large Thumbnail
 	add_image_size( 'medium', 250, '', true ); // Medium Thumbnail
 	add_image_size( 'small', 120, '', true ); // Small Thumbnail
-	//add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
+	// add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
-	//add_theme_support( 'post-formats', array( 'video' ) );
-
+	// add_theme_support( 'post-formats', array( 'video' ) );
 	// Enables post and comment RSS feed links to head
 	add_theme_support( 'automatic-feed-links' );
 
 	// Localisation Support
-	//load_theme_textdomain('bt', get_template_directory() . '/languages');
+	// load_theme_textdomain('bt', get_template_directory() . '/languages');
 }
 
-/*------------------------------------*\
+/*
+------------------------------------*\
 	Functions
 \*------------------------------------*/
 
@@ -79,8 +80,8 @@ function bt_header_scripts() {
 
 function bt_conditional_scripts() {
 	// if (is_page('pagenamehere')) {
-	//     wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
-	//     wp_enqueue_script('scriptname'); // Enqueue it!
+	// wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
+	// wp_enqueue_script('scriptname'); // Enqueue it!
 	// }
 }
 
@@ -93,9 +94,8 @@ function bt_styles() {
 	wp_register_style( 'fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600', array(), '1.0', 'all' );
 	wp_enqueue_style( 'fonts' ); // Enqueue it!
 
-	//wp_register_style('fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', array(), '1.0', 'all');
-	//wp_enqueue_style('fontawesome'); // Enqueue it!
-
+	// wp_register_style('fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', array(), '1.0', 'all');
+	// wp_enqueue_style('fontawesome'); // Enqueue it!
 	wp_register_style( 'theme', get_template_directory_uri() . '/css/styles.css', array(), '1.0', 'all' );
 	wp_enqueue_style( 'theme' ); // Enqueue it!
 }
@@ -271,7 +271,8 @@ function enable_threaded_comments() {
 	}
 }
 
-/*------------------------------------*\
+/*
+------------------------------------*\
 	Actions + Filters + ShortCodes
 \*------------------------------------*/
 
@@ -331,15 +332,15 @@ add_shortcode( 'bt_shortcode_demo_2', 'bt_shortcode_demo_2' ); // Place [bt_shor
 
 // Shortcodes above would be nested like this -
 // [bt_shortcode_demo] [bt_shortcode_demo_2] Here's the page title! [/bt_shortcode_demo_2] [/bt_shortcode_demo]
-
-/*------------------------------------*\
+/*
+------------------------------------*\
 	Custom Post Types
 \*------------------------------------*/
 
 // Create 1 Custom Post type for a Demo
 function create_post_type_bt() {
-	//register_taxonomy_for_object_type('category', 'inventory-item'); // Register Taxonomies for Category
-	//register_taxonomy_for_object_type('post_tag', 'inventory-item');
+	// register_taxonomy_for_object_type('category', 'inventory-item'); // Register Taxonomies for Category
+	// register_taxonomy_for_object_type('post_tag', 'inventory-item');
 	register_post_type(
 		'sample-type', // Register Custom Post Type
 		array(
@@ -368,8 +369,8 @@ function create_post_type_bt() {
 			),
 			'can_export'   => true, // Allows export in Tools > Export
 			'taxonomies'   => array(
-				//'post_tag',
-				//'category'
+				// 'post_tag',
+				// 'category'
 			), // Add Category and Post Tags support
 		)
 	);
@@ -391,7 +392,8 @@ function create_post_type_bt() {
 	);
 }
 
-/*------------------------------------*\
+/*
+------------------------------------*\
 	ShortCode Functions
 \*------------------------------------*/
 
