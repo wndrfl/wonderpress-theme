@@ -6,6 +6,9 @@
  * @package Brass Tacks
  */
 
+// Set the <body> id
+bt_body_id( 'home' );
+
 get_header();
 ?>
 
