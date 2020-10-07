@@ -16,7 +16,8 @@ function wonder_enqueue_styles() {
 	wp_register_style( 'fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600', array(), '1.0', 'all' );
 	wp_enqueue_style( 'fonts' );
 
-	wp_register_style( 'theme', get_template_directory_uri() . '/css/styles.css', array(), '1.0', 'all' );
+	$version = ( WP_DEBUG ) ? md5( rand() ) : '1.0.0';
+	wp_register_style( 'theme', get_template_directory_uri() . '/css/styles.css', array(), $version, 'all' );
 	wp_enqueue_style( 'theme' ); // Enqueue it!
 }
 
