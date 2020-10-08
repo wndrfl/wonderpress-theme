@@ -1,6 +1,6 @@
-name: Wonderpress Coding Standards
+name: wonderpress-coding-standards
 
-on: pull_request
+on: push
 
 jobs:
   wonderpress-coding-standards:
@@ -8,4 +8,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Codesniff against the Wonderpress Coding Standards...
-      run: composer install
+      run: |
+        composer install
+        composer run lint
