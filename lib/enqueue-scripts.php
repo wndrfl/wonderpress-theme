@@ -16,8 +16,9 @@ function wonder_enqueue_scripts() {
 		wp_deregister_script( 'jquery' );
 
 		// Replace with our own copy of jquery (and our custom scripts)
-		$version = ( WP_DEBUG ) ? md5( rand() ) : '1.0.0';
-		wp_register_script( 'jquery', get_template_directory_uri() . '/js/scripts.js', array(), $version, true );
+		$path = '/js/scripts.js';
+		$version = filemtime( get_template_directory() . $path );
+		wp_register_script( 'jquery', get_template_directory_uri() . $path, array(), $version, true );
 		wp_enqueue_script( 'jquery' );
 	}
 }
