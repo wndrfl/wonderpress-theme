@@ -1,5 +1,7 @@
 # ✨ Wonderpress Theme
 
+[![wonderpress-coding-standards Status](https://github.com/wndrfl/wonderpress-theme/workflows/wonderpress-coding-standards/badge.svg)](https://github.com/wndrfl/wonderpress-theme/actions)
+
 Wonderpress Theme is the official Wonderful boilerplate theme for WordPress. The goal is to provide coverage for the basics of a WordPress theme, without imposing opinion on styles or structure.
 
 This theme leans heavily on Wonderful's [Static Kit](https://github.com/wndrfl/static-kit) development environment.
