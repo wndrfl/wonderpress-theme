@@ -12,9 +12,9 @@
 <head>
 
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-    <title><?php wp_title(); ?></title>
-    <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+	<title><?php wp_title(); ?></title>
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 	<link href="//www.google-analytics.com" rel="dns-prefetch">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -23,7 +23,10 @@
 	<meta name="description" content="<?php bloginfo( 'description' ); ?>">
 
 
-    <?php if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' ); ?>
+	<?php
+	if ( is_singular() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );}
+	?>
 
 	<?php wp_head(); ?>
 
