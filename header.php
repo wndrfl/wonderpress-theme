@@ -48,7 +48,7 @@
 	</script>
 </head>
 
-<body <?php echo esc_html( wonder_body_id() ); ?> <?php body_class(); ?>>
+<body id="<?php echo esc_attr( wonder_body_id() ); ?>" <?php body_class(); ?>>
 
 	<header id="theme-header" class="theme-header clear" role="banner">
 		<div class="container">
