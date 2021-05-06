@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+mkdir -p .wonderpress/archive
 cp package.json .wonderpress/archive/package.json
 cp .gitignore .wonderpress/archive/.gitignore
 cp .wonderpress/postinstall/package.json package.json
