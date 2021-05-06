@@ -5,7 +5,7 @@
     "@wndrfl/static-kit-cli": "<2.0.0"
   },
   "scripts": {
-    "postinstall": "rm package.json && mv .wonderpress-theme.package.json package.json && npx statickit . && npm uninstall -D @wndrfl/static-kit-cli && npm prune",
+    "postinstall": "mkdir -p .wonderpress/archive && mv package.json .wonderpress/archive/package.json && mv .gitignore .wonderpress/archive/.gitignore && mv .wonderpress.package.json package.json && npx statickit . && npm uninstall -D @wndrfl/static-kit-cli && npm prune && mv .wonderpress/archive/.gitignore .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

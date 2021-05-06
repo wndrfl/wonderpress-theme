@@ -1,0 +1,43 @@
+{
+  "name": "wonderpress-theme",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "autoprefixer": "^9.8.6",
+    "babelify": "^10.0.0",
+    "bootstrap": "^4.5.2",
+    "browserify": "^16.5.2",
+    "colors": "^1.4.0",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-changed": "^4.0.2",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "jquery": "^3.5.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "reset": "rm -rf css gulpfile.js images js node_modules package-lock.json statickit.json && mv package.json .wonderpress.package.json && mv .wonderpress/archive/package.json package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wndrfl/wonderpress-theme.git"
+  },
+  "author": "Johnnie Munger <johnnie@wonderful.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wndrfl/wonderpress-theme/issues"
+  },
+  "homepage": "https://github.com/wndrfl/wonderpress-theme",
+  "description": "The official Wonderful boilerplate theme for WordPress.",
+  "keywords": []
+}
