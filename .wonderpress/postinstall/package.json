@@ -26,7 +26,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "reset": "rm -rf css gulpfile.js images js node_modules package-lock.json statickit.json && mv package.json .wonderpress.package.json && mv .wonderpress/archive/package.json package.json"
+    "reset": ".wonderpress/reset.sh"
   },
   "repository": {
     "type": "git",
