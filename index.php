@@ -18,7 +18,7 @@ get_header();
 			<h1>
 				<?php esc_html_e( 'Latest Posts', 'bt' ); ?>
 			</h1>
-
+			
 			<?php get_template_part( 'loop' ); ?>
 
 			<?php get_template_part( 'pagination' ); ?>
