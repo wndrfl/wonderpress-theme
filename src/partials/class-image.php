@@ -1,49 +1,68 @@
 <?php
+/**
+ * An Image partial class.
+ *
+ * @package Wonderpress Theme
+ */
+
 namespace Wonderpress\Partials;
 
-use Wonderpress\Partials\AbstractPartial;
+use Wonderpress\Partials\Abstract_Partial;
 
-class Image extends AbstractPartial
-{
-	static
-		$_properties = [
-			'classes' => [
-				'description' => 'The classes for the image element',
-				'format' => 'string|array',
-				'required' => false,
-			],
-			'alt' => [
-				'description' => 'Alternative text for the image',
-				'format' => 'string',
-				'required' => false,
-			],
-			'size' => [
-				'description' =>  'The default WP Image size',
-				'format' => 'string',
-				'required' => false,
-			],
-			'src' => [
-				'description' =>  'The image src attribute',
-				'format' => 'string',
-				'required' => true,
-			],
-			'srcset' => [
-				'description' =>  'A srcset for a <picture> element',
-				'format' => 'array',
-				'required' => false,
-			],
-			'attributes' =>  [
-				'description' => 'An array of arbitrary attributes for the DOM element',
-				'format' => 'array',
-				'required' => false,
-			]
-		];
+/**
+ * Image
+ * Wonderpress\Partials\Image
+ */
+class Image extends Abstract_Partial {
 
-	public function __construct(array $params=[])
-	{
+	/**
+	 * A definition of all available properties.
+	 *
+	 * @var Array $_properties
+	 */
+	protected static $_properties = array(
+		'classes' => array(
+			'description' => 'The classes for the image element',
+			'format' => 'string|array',
+			'required' => false,
+		),
+		'alt' => array(
+			'description' => 'Alternative text for the image',
+			'format' => 'string',
+			'required' => false,
+		),
+		'size' => array(
+			'description' => 'The default WP Image size',
+			'format' => 'string',
+			'required' => false,
+		),
+		'src' => array(
+			'description' => 'The image src attribute',
+			'format' => 'string',
+			'required' => true,
+		),
+		'srcset' => array(
+			'description' => 'A srcset for a <picture> element',
+			'format' => 'array',
+			'required' => false,
+		),
+		'attributes' => array(
+			'description' => 'An array of arbitrary attributes for the DOM element',
+			'format' => 'array',
+			'required' => false,
+		),
+	);
+
+	/**
+	 * Constructor
+	 *
+	 * @param Array $params An array of values to populate the partial snippet.
+	 * @return void
+	 */
+	public function __construct( array $params = array() ) {
 		// Check to see if a preferred size was passed.
-		$classes = ( isset( $params['classes'] ) ) ? $params['classes'] : [];
-		$this->classes = (is_array($classes)) ? implode(' ', $classes) : $classes;
+		$classes = ( isset( $params['classes'] ) ) ? $params['classes'] : array();
+		$this->classes = ( is_array( $classes ) ) ? implode( ' ', $classes ) : $classes;
 
 		// Check to see if a preferred size was passed.
 		$this->size = ( isset( $params['size'] ) ) ? $params['size'] : 'large';
@@ -61,8 +80,12 @@ class Image extends AbstractPartial
 		$this->attributes = ( isset( $params['attributes'] ) && is_array( $params['attributes'] ) ) ? $params['attributes'] : array();
 	}
 
-	public static function example()
-	{
+	/**
+	 * Outputs an example code snippet for how to use this partial.
+	 *
+	 * @return String
+	 */
+	public static function example_snippet() {
 		$snippet = <<<EOD
 		<?php
 		wonder_image(array(
@@ -72,16 +95,19 @@ class Image extends AbstractPartial
 		?>
 		EOD;
 
-		echo '<pre>';
-		echo htmlspecialchars($snippet);
-		echo '</pre>';
+		return $snippet;
 	}
 
-	public function render_into_template()
-	{
+	/**
+	 * An internal process to merge the property values and HTML bits into a
+	 * usable HTML snippet.
+	 *
+	 * @return void
+	 */
+	public function render_into_template() {
 		// If there are multiple sources, use the <picture> element.
 		if ( $this->srcset ) {
-		?>
+			?>
 		<picture>
 			<?php foreach ( $this->srcset as $min => $src ) { ?>
 			<source media="(min-width:<?php echo esc_attr( $min ); ?>px)" srcset="<?php echo esc_url( $src ); ?>">
@@ -93,10 +119,10 @@ class Image extends AbstractPartial
 				<?php } ?>
 				/>
 		</picture>
-		<?php
-		// If we only have a single src, use a traditional <img> element.
+			<?php
+			// If we only have a single src, use a traditional <img> element.
 		} else {
-		?>
+			?>
 		<img src="<?php echo esc_url( $this->src ); ?>"
 			class="<?php echo esc_attr( ( isset( $this->classes ) ) ? $this->classes : '' ); ?>"
 			alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
@@ -104,6 +130,7 @@ class Image extends AbstractPartial
 				<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
 			<?php } ?>
 			/>
-		<?php }
+			<?php
+		}
 	}
 }

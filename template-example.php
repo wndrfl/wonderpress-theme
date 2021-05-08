@@ -27,14 +27,17 @@ if ( have_posts() ) :
 			<div class="row">
 				<div class="col-md-6">
 					<?php
-					wonder_image(array(
-						'alt' => 'This is an example image',
-						'src' => 'https://via.placeholder.com/150',
-					), true);
+					wonder_image(
+						array(
+							'alt' => 'This is an example image',
+							'src' => 'https://via.placeholder.com/150',
+						),
+						true
+					);
 					?>
 				</div>
 				<div class="col-md-6">
-					<?php 
+					<?php
 					Wonderpress\Partials\Image::example();
 					Wonderpress\Partials\Image::explain();
 					?>
