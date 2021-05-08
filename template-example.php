@@ -35,7 +35,7 @@ if ( have_posts() ) :
 					?>
 				</div>
 				<div class="col-md-6">
-					<script src="https://gist.github.com/johnnietheblack/167c186443ba2839eadf1a9ccedc4630.js"></script>
+					<script src="https://gist.github.com/johnnietheblack/167c186443ba2839eadf1a9ccedc4630.js"></script><?php // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript ?>
 				</div>
 			</div>
 			<div class="row">
@@ -54,7 +54,7 @@ if ( have_posts() ) :
 					?>
 				</div>
 				<div class="col-md-6">
-					<script src="https://gist.github.com/johnnietheblack/8bdf5a0fc53a40ecaab361d712422af1.js"></script>
+					<script src="https://gist.github.com/johnnietheblack/8bdf5a0fc53a40ecaab361d712422af1.js"></script><?php // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript ?>
 				</div>
 			</div>
 		</div>

@@ -5,32 +5,32 @@
  * This template should be used in 1 of 2 ways. See below;
  *
  * OPTION 1 (manual entry). Pass all attributes required to generate the image, like so:
- * 
- * 	wonder_include_template_file(
- * 		'partials/link.php',
- * 		array(
- * 			'accessibility_title' => <string>,
- * 			'attributes' => <associative_array>,
- * 			'class' => <string|array>,
- * 			'link_type' => <string:'email'>,
- * 			'open_in_new_tab' => <boolean>,
- * 			'text' => <string>,
- * 			'url' => <string>,
- * 		)
- * 	);
- * 
+ *
+ *  wonder_include_template_file(
+ *      'partials/link.php',
+ *      array(
+ *          'accessibility_title' => <string>,
+ *          'attributes' => <associative_array>,
+ *          'class' => <string|array>,
+ *          'link_type' => <string:'email'>,
+ *          'open_in_new_tab' => <boolean>,
+ *          'text' => <string>,
+ *          'url' => <string>,
+ *      )
+ *  );
+ *
  * OPTION 2 (ACF only): If the template is utilizing ACF, you may simply pass in an
  * ACF image field, and the template will apply sane defaults:
- * 
- * 	wonder_include_template_file(
- * 		'partials/link.php',
- * 		array(
- * 			'acf' => get_field('acf_component-name'),
- * 		)
- * 	);
- * 
+ *
+ *  wonder_include_template_file(
+ *      'partials/link.php',
+ *      array(
+ *          'acf' => get_field('acf_component-name'),
+ *      )
+ *  );
+ *
  * @package Wonderpress Theme
-**/
+ **/
 
 // Check to see if an image object was passed (optional)
 $acf = ( class_exists( 'ACF' ) && isset( $acf ) ) ? $acf : null;
@@ -80,7 +80,7 @@ if ( ! $content && $acf ) {
 // Get the title to use for this link
 $accessibility_title = ( isset( $accessibility_title ) ) ? $accessibility_title : null;
 if ( ! $accessibility_title && isset( $acf ) && $acf ) {
-	$accessibility_title = ( isset( $acf['accessibility_title'] ) ) ? $acf['accessibility_title'] : strip_tags($content);
+	$accessibility_title = ( isset( $acf['accessibility_title'] ) ) ? $acf['accessibility_title'] : strip_tags( $content );
 }
 $accessibility_title = ( $accessibility_title ) ? $accessibility_title : $content;
 ?>
