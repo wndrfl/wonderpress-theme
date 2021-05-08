@@ -5,10 +5,10 @@ use Wonderpress\Partials\AbstractPartial;
 
 class Image extends AbstractPartial
 {
-	protected
+	static
 		$_properties = [
-			'class' => [
-				'description' => 'The class for the image element',
+			'classes' => [
+				'description' => 'The classes for the image element',
 				'format' => 'string|array',
 				'required' => false,
 			],
@@ -42,8 +42,8 @@ class Image extends AbstractPartial
 	public function __construct(array $params=[])
 	{
 		// Check to see if a preferred size was passed.
-		$class = ( isset( $params['class'] ) ) ? $params['class'] : [];
-		$this->class = (is_array($class)) ? implode(' ', $class) : [];
+		$classes = ( isset( $params['classes'] ) ) ? $params['classes'] : [];
+		$this->classes = (is_array($classes)) ? implode(' ', $classes) : $classes;
 
 		// Check to see if a preferred size was passed.
 		$this->size = ( isset( $params['size'] ) ) ? $params['size'] : 'large';
@@ -61,6 +61,22 @@ class Image extends AbstractPartial
 		$this->attributes = ( isset( $params['attributes'] ) && is_array( $params['attributes'] ) ) ? $params['attributes'] : array();
 	}
 
+	public static function example()
+	{
+		$snippet = <<<EOD
+		<?php
+		wonder_image(array(
+			'alt' => 'This is an example image',
+			'src' => 'https://via.placeholder.com/150',
+		), true);
+		?>
+		EOD;
+
+		echo '<pre>';
+		echo htmlspecialchars($snippet);
+		echo '</pre>';
+	}
+
 	public function render_into_template()
 	{
 		// If there are multiple sources, use the <picture> element.
@@ -70,7 +86,7 @@ class Image extends AbstractPartial
 			<?php foreach ( $this->srcset as $min => $src ) { ?>
 			<source media="(min-width:<?php echo esc_attr( $min ); ?>px)" srcset="<?php echo esc_url( $src ); ?>">
 			<?php } ?>
-			<img src="<?php echo esc_url( reset( $srcs ) ); ?>" class="<?php echo esc_attr( ( isset( $this->class ) ) ? $this->class : '' ); ?>"
+			<img src="<?php echo esc_url( reset( $srcs ) ); ?>" class="<?php echo esc_attr( ( isset( $this->classes ) ) ? $this->classes : '' ); ?>"
 				alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
 				<?php foreach ( $this->attributes as $attribute => $value ) { ?>
 					<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
@@ -82,7 +98,7 @@ class Image extends AbstractPartial
 		} else {
 		?>
 		<img src="<?php echo esc_url( $this->src ); ?>"
-			class="<?php echo esc_attr( ( isset( $this->class ) ) ? $this->class : '' ); ?>"
+			class="<?php echo esc_attr( ( isset( $this->classes ) ) ? $this->classes : '' ); ?>"
 			alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
 			<?php foreach ( $this->attributes as $attribute => $value ) { ?>
 				<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"

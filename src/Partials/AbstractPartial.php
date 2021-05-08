@@ -6,7 +6,9 @@ use Wonderpress\Partials\PartialInterface;
 abstract class AbstractPartial implements PartialInterface
 {
 	protected
-		$_attrs = [],
+		$_attrs = [];
+
+	static
 		$_properties = [];
 
 	public function __debugInfo()
@@ -15,7 +17,7 @@ abstract class AbstractPartial implements PartialInterface
 	}
 
     public function __get($property) {
-        if (!property_exists($this, '_properties') || !isset($this->_properties[$property])) {
+        if (!property_exists(get_called_class(), '_properties') || !isset(static::$_properties[$property])) {
         	throw new \Exception('\'' . $property . '\' is not an allowed property.');
         }
 
@@ -23,14 +25,14 @@ abstract class AbstractPartial implements PartialInterface
     }
 
     public function __set($property, $value) {
-        if (!property_exists($this, '_properties') || !isset($this->_properties[$property])) {
+        if (!property_exists(get_called_class(), '_properties') || !isset(static::$_properties[$property])) {
         	throw new \Exception('\'' . $property . '\' is not an allowed property.');
         }
 
     	$attempted_type = gettype($value);
 
     	if(!$attempted_type) {
-	        $_property = $this->_properties[$property];
+	        $_property = static::$_properties[$property];
 	        if(isset($_property['format'])) {
 	        	$allowed_formats = (is_array($_property['format'])) ? $_property['format'] : explode('|',$_property['format']);
 	        	if(!is_array($allowed_formats)) {
@@ -51,20 +53,20 @@ abstract class AbstractPartial implements PartialInterface
 		return $this->render(false);
 	}
 
-	public function explain()
+	public static function explain()
 	{
 		echo '<pre>';
-		var_dump($this->_properties);
+		var_dump(static::$_properties);
 		echo '</pre>';
 	}
 
 	public function is_valid()
 	{
-		if(!isset($this->_properties)) {
+		if(!isset(self::$_properties)) {
 			return true;
 		}
 
-		foreach($this->_properties as $key => $config) {
+		foreach(self::$_properties as $key => $config) {
 			if(isset($config['required']) && $config['required'] && is_null($this->$key)) {
 				return false;
 			}

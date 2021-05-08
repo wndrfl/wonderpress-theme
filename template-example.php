@@ -31,17 +31,13 @@ if ( have_posts() ) :
 						'alt' => 'This is an example image',
 						'src' => 'https://via.placeholder.com/150',
 					), true);
-						// wonder_include_template_file(
-						// 	'partials/image.php',
-						// 	array(
-						// 		'alt' => 'This is an example image',
-						// 		'src' => 'https://via.placeholder.com/150',
-						// 	)
-						// );
 					?>
 				</div>
 				<div class="col-md-6">
-					<script src="https://gist.github.com/johnnietheblack/167c186443ba2839eadf1a9ccedc4630.js"></script><?php // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript ?>
+					<?php 
+					Wonderpress\Partials\Image::example();
+					Wonderpress\Partials\Image::explain();
+					?>
 				</div>
 			</div>
 			<div class="row">
