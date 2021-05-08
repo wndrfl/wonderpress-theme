@@ -38,6 +38,25 @@ if ( have_posts() ) :
 					<script src="https://gist.github.com/johnnietheblack/167c186443ba2839eadf1a9ccedc4630.js"></script>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<?php
+						wonder_include_template_file(
+							'partials/link.php',
+							array(
+								'accessibility_title' => 'This is the title',
+								'class' => 'sample-link',
+								'open_in_new_tab' => true,
+								'content' => 'This is a sample link',
+								'url' => 'https://wonderful.io',
+							)
+						);
+					?>
+				</div>
+				<div class="col-md-6">
+					<script src="https://gist.github.com/johnnietheblack/8bdf5a0fc53a40ecaab361d712422af1.js"></script>
+				</div>
+			</div>
 		</div>
 
 	</section>

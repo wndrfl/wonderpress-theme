@@ -17,8 +17,6 @@
  *      )
  *  );
  *
- * TEMPLATE USAGE:
- *
  * OPTION 2 (ACF only): If the template is utilizing ACF, you may simply pass in an
  * ACF image field, and the template will apply sane defaults:
  *
