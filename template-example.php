@@ -6,6 +6,11 @@
  * @package Wonderpress Theme
  */
 
+use Wonderpress\Partials\Image as Image;
+
+$img = new Image;
+$img->render();
+
 // Set the <body> id
 wonder_body_id( 'example' );
 
