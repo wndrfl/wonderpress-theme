@@ -1,5 +1,5 @@
 <?php
-
+use Wonderpress\Partials\Image;
 
 if (! function_exists('wonder_body_id')) {
 	/**
@@ -16,6 +16,20 @@ if (! function_exists('wonder_body_id')) {
 		}
 
 		return 'id="' . ( $_body_id ? $_body_id : 'body' ) . '"';
+	}
+}
+
+if (! function_exists('wonder_image')) {
+	/**
+	 * Render or return the contents of a template file.
+	 *
+	 * @param String  $_filename The path to the file.
+	 * @param Mixed[] $_params An array of variables to pass to the template.
+	 * @param Boolean $_return Whether to return the contents (instead of echoing them).
+	 */
+	function wonder_image( $params, $echo = true ) {
+		$image = new Image($params);
+		$image->render($echo);
 	}
 }
 

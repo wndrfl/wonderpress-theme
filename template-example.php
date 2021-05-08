@@ -8,9 +8,6 @@
 
 use Wonderpress\Partials\Image as Image;
 
-$img = new Image;
-$img->render();
-
 // Set the <body> id
 wonder_body_id( 'example' );
 
@@ -30,13 +27,17 @@ if ( have_posts() ) :
 			<div class="row">
 				<div class="col-md-6">
 					<?php
-						wonder_include_template_file(
-							'partials/image.php',
-							array(
-								'alt' => 'This is an example image',
-								'src' => 'https://via.placeholder.com/150',
-							)
-						);
+					wonder_image(array(
+						'alt' => 'This is an example image',
+						'src' => 'https://via.placeholder.com/150',
+					), true);
+						// wonder_include_template_file(
+						// 	'partials/image.php',
+						// 	array(
+						// 		'alt' => 'This is an example image',
+						// 		'src' => 'https://via.placeholder.com/150',
+						// 	)
+						// );
 					?>
 				</div>
 				<div class="col-md-6">
