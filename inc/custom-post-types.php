@@ -43,5 +43,4 @@
 // )
 // );
 // }
-
 // add_action( 'init', 'wonder_create_post_type' );

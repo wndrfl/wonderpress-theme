@@ -26,7 +26,6 @@ spl_autoload_register(
 			// FOOLED YOU. The WordPress Coding Standard doesn't support true PSR-4
 			// naming standards for classes. So we have to adjust the naming a little
 			// further in order to find the correct file.
-
 			// Now turn the file name into the WordPress-friendly naming convention
 			// of "class-the-class-name.php"
 			$class_file_parts = explode( DIRECTORY_SEPARATOR, $class_file );
