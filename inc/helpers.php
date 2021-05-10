@@ -6,6 +6,7 @@
  */
 
 use Wonderpress\Partials\Image;
+use Wonderpress\Partials\Link;
 
 if ( ! function_exists( 'wonder_body_id' ) ) {
 	/**
@@ -28,7 +29,7 @@ if ( ! function_exists( 'wonder_body_id' ) ) {
 
 if ( ! function_exists( 'wonder_image' ) ) {
 	/**
-	 * Render or return the contents of a template file.
+	 * Easily render an image tag.
 	 *
 	 * @param Mixed[] $params An array of variables to pass to the template.
 	 * @param Boolean $echo Whether to echo or return the image snippet.
@@ -67,6 +68,21 @@ if ( ! function_exists( 'wonder_include_template_file' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'wonder_link' ) ) {
+	/**
+	 * Easily render an anchor tag.
+	 *
+	 * @param Mixed[] $params An array of variables to pass to the template.
+	 * @param Boolean $echo Whether to echo or return the image snippet.
+	 * @return void
+	 */
+	function wonder_link( $params, $echo = true ) {
+		$link = new Link( $params );
+		$link->render( $echo );
+	}
+}
+
 
 if ( ! function_exists( 'wonder_nav' ) ) {
 	/**

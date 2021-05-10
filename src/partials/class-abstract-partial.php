@@ -92,6 +92,17 @@ abstract class Abstract_Partial implements Partial_Interface {
 	}
 
 	/**
+	 * Compress an HTML string to remove extra whitespaces.
+	 *
+	 * @param String $html An html string to compress.
+	 * @return String
+	 */
+	public static function compress_html( $html ) {
+		$html = preg_replace( '/[\n\t]+/S', '', $html );
+		return $html;
+	}
+
+	/**
 	 * Outputs an example code snippet for how to use this partial.
 	 *
 	 * @return void
@@ -120,7 +131,7 @@ abstract class Abstract_Partial implements Partial_Interface {
 	 */
 	public function get_invalid_properties() {
 
-		$invalid_properties = [];
+		$invalid_properties = array();
 
 		if ( ! isset( self::$_properties ) ) {
 			return $invalid_properties;
@@ -160,18 +171,21 @@ abstract class Abstract_Partial implements Partial_Interface {
 			throw new \Exception( 'Partial is invalid, missing value for property.' );
 		}
 
+		$html = '';
+		ob_start();
+
+		$this->render_into_template();
+
+		$html = ob_get_contents();
+		ob_end_clean();
+
+		$html = static::compress_html( $html );
+
 		if ( ! $echo ) {
-			$html = '';
-			ob_start();
+			return wp_kses_post( $html );
 		}
 
-		echo wp_kses_post( $this->render_into_template() );
-
-		if ( ! $echo ) {
-			$html = ob_get_contents();
-			ob_end_clean();
-			return $html;
-		}
+		echo wp_kses_post( $html );
 
 		return true;
 	}

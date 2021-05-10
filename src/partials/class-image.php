@@ -76,7 +76,7 @@ class Image extends Abstract_Partial {
 		// Check for a src (this will not be used if $srcs exists).
 		$this->src = ( isset( $params['src'] ) ) ? $params['src'] : null;
 
-		// Set arbitrary attributes for the button (such as data attributes).
+		// Set arbitrary attributes for the element (such as data attributes).
 		$this->attributes = ( isset( $params['attributes'] ) && is_array( $params['attributes'] ) ) ? $params['attributes'] : array();
 	}
 
