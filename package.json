@@ -6,6 +6,7 @@
   },
   "scripts": {
     "postinstall": ".wonderpress/postinstall.sh",
+    "reset": ".wonderpress/reset.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,5 @@
   },
   "homepage": "https://github.com/wndrfl/wonderpress-theme",
   "description": "The official Wonderful boilerplate theme for WordPress.",
-  "keywords": [],
-  "dependencies": {}
+  "keywords": []
 }
