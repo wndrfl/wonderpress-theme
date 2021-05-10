@@ -114,22 +114,34 @@ abstract class Abstract_Partial implements Partial_Interface {
 	}
 
 	/**
+	 * Gathers any properties that do not match configuration constraints.
+	 *
+	 * @return Array
+	 */
+	public function get_invalid_properties() {
+
+		$invalid_properties = [];
+
+		if ( ! isset( self::$_properties ) ) {
+			return $invalid_properties;
+		}
+
+		foreach ( self::$_properties as $key => $config ) {
+			if ( isset( $config['required'] ) && $config['required'] && is_null( $this->$key ) ) {
+				$invalid_properties[ $key ] = $config;
+			}
+		}
+
+		return $invalid_properties;
+	}
+
+	/**
 	 * Determines whether this instatiation is currently valid for output.
 	 *
 	 * @return Boolean
 	 */
 	public function is_valid() {
-		if ( ! isset( self::$_properties ) ) {
-			return true;
-		}
-
-		foreach ( self::$_properties as $key => $config ) {
-			if ( isset( $config['required'] ) && $config['required'] && is_null( $this->$key ) ) {
-				return false;
-			}
-		}
-
-		return true;
+		return ( $this->get_invalid_properties() ) ? false : true;
 	}
 
 	/**
