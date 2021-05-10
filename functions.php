@@ -33,10 +33,13 @@ spl_autoload_register(
 			array_push( $class_file_parts, $file_name );
 			$class_file = implode( DIRECTORY_SEPARATOR, $class_file_parts );
 
+			// die($classes_dir . $class_file);
 			require_once $classes_dir . $class_file;
 		}
 	}
 );
+
+require_all( dirname( __FILE__ ) . '/src/util/' );
 
 /**
  * Require all files in a directory.
