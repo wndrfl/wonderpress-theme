@@ -1,13 +1,13 @@
 {
     "require-dev": {
-        "wp-coding-standards/wpcs": "^0.14.0"
+        "wp-coding-standards/wpcs": "^2.3.0"
     },
     "scripts": {
-        "lint": "phpcs -p -v .",
-        "lint-fix": "phpcbf -p -v .",
+        "lint": "./vendor/bin/phpcs -p -v wp-content/themes/.",
+        "lint-fix": "./vendor/bin/phpcbf -p -v .",
         "post-install-cmd": [
-            "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
-            "phpcs -i"
+            "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+            "./vendor/bin/phpcs -i"
         ]
     }
 }
