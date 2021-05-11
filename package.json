@@ -5,8 +5,8 @@
     "@wndrfl/static-kit-cli": "<2.0.0"
   },
   "scripts": {
-    "postinstall": ".wonderpress/postinstall.sh",
-    "reset": ".wonderpress/reset.sh",
+    "postinstall": "node .wonderpress/postinstall",
+    "reset": "node .wonderpress/reset",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
