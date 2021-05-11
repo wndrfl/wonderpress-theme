@@ -7,6 +7,8 @@ const fs = require('fs');
 // This script should be run after npm has completed its
 // initial installation, during the `postinstall` hook.
 
+console.log('Running various postinstall scripts...');
+
 // Create an archive directory for storing various things
 fs.mkdir('.wonderpress/archive', true, (err) => {
     if (err) {
