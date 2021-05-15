@@ -6,7 +6,7 @@
  * @package Wonderpress Theme
  */
 
-use Wonderpress\Partials\Image as Image;
+use WonderpressCore\Partials\Image as Image;
 
 // Set the <body> id
 wonder_body_id( 'example' );
@@ -38,8 +38,8 @@ if ( have_posts() ) :
 				</div>
 				<div class="col-md-6">
 					<?php
-					Wonderpress\Partials\Image::example();
-					Wonderpress\Partials\Image::explain();
+					WonderpressCore\Partials\Image::example();
+					WonderpressCore\Partials\Image::explain();
 					?>
 				</div>
 			</div>
@@ -59,8 +59,8 @@ if ( have_posts() ) :
 				</div>
 				<div class="col-md-6">
 					<?php
-					Wonderpress\Partials\Link::example();
-					Wonderpress\Partials\Link::explain();
+					WonderpressCore\Partials\Link::example();
+					WonderpressCore\Partials\Link::explain();
 					?>
 				</div>
 			</div>
