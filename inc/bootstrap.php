@@ -52,9 +52,9 @@ function wonder_enqueue_scripts() {
 		wp_deregister_script( 'jquery' );
 
 		// Replace with our own copy of jquery (and our custom scripts)
-		$path = '/js/scripts.js';
-		$version = filemtime( get_template_directory() . $path );
-		wp_register_script( 'jquery', get_template_directory_uri() . $path, array(), $version, true );
+		$path = get_template_directory() .'/js/scripts.js';
+		$version = file_exists($path) ? filemtime( $path ) : '1.0.0';
+		wp_register_script( 'jquery', $path, array(), $version, true );
 		wp_enqueue_script( 'jquery' );
 	}
 }
@@ -73,9 +73,9 @@ function wonder_enqueue_styles() {
 	wp_register_style( 'fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600', array(), '1.0', 'all' );
 	wp_enqueue_style( 'fonts' );
 
-	$path = '/css/styles.css';
-	$version = filemtime( get_template_directory() . $path );
-	wp_register_style( 'theme', get_template_directory_uri() . $path, array(), $version, 'all' );
+	$path = get_template_directory_uri() . '/css/styles.css';
+	$version = file_exists($path) ? filemtime( $path ) : '1.0.0';
+	wp_register_style( 'theme', $path, array(), $version, 'all' );
 	wp_enqueue_style( 'theme' );
 }
 
