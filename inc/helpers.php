@@ -23,7 +23,7 @@ if ( ! function_exists( 'wonder_body_id' ) ) {
 			return true;
 		}
 
-		return 'id="' . ( $_body_id ? $_body_id : 'body' ) . '"';
+		return ( $_body_id ? $_body_id : 'body' );
 	}
 }
 
@@ -33,11 +33,12 @@ if ( ! function_exists( 'wonder_image' ) ) {
 	 *
 	 * @param Mixed[] $params An array of variables to pass to the template.
 	 * @param Boolean $echo Whether to echo or return the image snippet.
-	 * @return void
+	 * @return String
 	 */
 	function wonder_image( $params, $echo = true ) {
 		$image = new Image( $params );
-		$image->render( $echo );
+		$html = $image->render( $echo );
+		return $html;
 	}
 }
 
@@ -75,11 +76,12 @@ if ( ! function_exists( 'wonder_link' ) ) {
 	 *
 	 * @param Mixed[] $params An array of variables to pass to the template.
 	 * @param Boolean $echo Whether to echo or return the image snippet.
-	 * @return void
+	 * @return String
 	 */
 	function wonder_link( $params, $echo = true ) {
 		$link = new Link( $params );
-		$link->render( $echo );
+		$html = $link->render( $echo );
+		return $html;
 	}
 }
 
@@ -96,7 +98,7 @@ if ( ! function_exists( 'wonder_nav' ) ) {
 			array(
 				'theme_location'  => $location,
 				'menu'            => '',
-				'container'       => 'div',
+				'container'       => '',
 				'container_class' => 'menu-container',
 				'container_id'    => '',
 				'menu_class'      => 'menu',
