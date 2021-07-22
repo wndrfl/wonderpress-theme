@@ -126,15 +126,15 @@ class Link extends Abstract_Partial {
 			 aria-label="<?php echo esc_attr( $this->title ); ?>"
 			 title="<?php echo esc_attr( $this->title ); ?>"<?php } ?>
 		<?php if ( $this->open_in_new_tab ) { ?>
-			target="_blank"
+			 target="_blank"
 		<?php } ?>
 		<?php foreach ( $this->attributes as $attribute => $value ) { ?>
-			<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
+			 <?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
 		<?php } ?>
 	   role="link"
 		>
 		<?php
-		echo wp_kses_post( $this->content );
+		echo $this->content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		?>
 		</a>
 		<?php

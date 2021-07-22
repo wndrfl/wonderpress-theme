@@ -47,7 +47,7 @@ abstract class Abstract_Partial implements Partial_Interface {
 			throw new \Exception( '\'' . $property . '\' is not an allowed property.' );
 		}
 
-		return $this->_attrs[ $property ];
+		return isset( $this->_attrs[ $property ] ) ? $this->_attrs[ $property ] : null;
 	}
 
 	/**
@@ -133,17 +133,64 @@ abstract class Abstract_Partial implements Partial_Interface {
 
 		$invalid_properties = array();
 
-		if ( ! isset( self::$_properties ) ) {
+		if ( ! isset( static::$_properties ) ) {
 			return $invalid_properties;
 		}
 
-		foreach ( self::$_properties as $key => $config ) {
+		foreach ( static::$_properties as $key => $config ) {
 			if ( isset( $config['required'] ) && $config['required'] && is_null( $this->$key ) ) {
 				$invalid_properties[ $key ] = $config;
+				continue;
+			}
+
+			if ( ! is_null( $this->$key ) && isset( $config['format'] ) ) {
+				$format_parts = explode( '|', $config['format'] );
+				$is_valid = false;
+				foreach ( $format_parts as $format ) {
+					switch ( $format ) {
+						case 'array':
+							$is_valid = is_array( $this->$key );
+							break;
+						case 'bool':
+						case 'boolean':
+							$is_valid = is_bool( $this->$key );
+							break;
+						case 'string':
+							$is_valid = is_string( $this->$key );
+							break;
+					}
+
+					if ( $is_valid ) {
+						break;
+					}
+				}
+
+				if ( ! $is_valid ) {
+					$invalid_properties[ $key ] = $config;
+					continue;
+				}
 			}
 		}
 
 		return $invalid_properties;
+	}
+
+	/**
+	 * Outputs the current contents of this partial's settings.
+	 *
+	 * @return void
+	 */
+	public function inspect() {
+
+		$properties = array();
+
+		foreach ( static::$_properties as $key => $config ) {
+			$properties[ $key ] = ! is_null( $this->$key ) ? $this->$key : null;
+		}
+
+		echo '<pre>';
+		var_dump( $properties );
+		echo '</pre>';
 	}
 
 	/**
@@ -167,8 +214,9 @@ abstract class Abstract_Partial implements Partial_Interface {
 			throw new \Exception( 'No template provided for this partial.' );
 		}
 
-		if ( ! $this->is_valid() ) {
-			throw new \Exception( 'Partial is invalid, missing value for property.' );
+		$invalid_properties = $this->get_invalid_properties();
+		if ( $invalid_properties ) {
+			throw new \Exception( 'Partial is invalid, missing or invalid value for property: ' . array_key_first( $invalid_properties ) );
 		}
 
 		$html = '';
@@ -181,11 +229,46 @@ abstract class Abstract_Partial implements Partial_Interface {
 
 		$html = static::compress_html( $html );
 
+		$allowed_tags = array_merge(
+			wp_kses_allowed_html( 'post' ),
+			array(
+				'picture' => array(),
+				'source' => array(
+					'media' => array(),
+					'srcset' => array(),
+				),
+				'svg'   => array(
+					'class' => array(),
+					'aria-hidden' => array(),
+					'aria-labelledby' => array(),
+					'role' => array(),
+					'xmlns' => array(),
+					'width' => array(),
+					'height' => array(),
+					'viewbox' => array(), // <= Must be lower case!
+				),
+				'line'     => array(
+					'x1' => array(),
+					'y1' => array(),
+					'x2' => array(),
+					'y2' => array(),
+					'stroke' => array(),
+				),
+				'g'     => array( 'fill' => array() ),
+				'title' => array( 'title' => array() ),
+				'path'  => array(
+					'd' => array(),
+					'fill' => array(),
+					'stroke' => array(),
+				),
+			)
+		);
+
 		if ( ! $echo ) {
-			return wp_kses_post( $html );
+			return wp_kses( $html, $allowed_tags );
 		}
 
-		echo wp_kses_post( $html );
+		echo wp_kses( $html, $allowed_tags );
 
 		return true;
 	}

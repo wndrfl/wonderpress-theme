@@ -15,7 +15,7 @@ get_header();
 		<section>
 
 			<h1>
-			<?php echo get_search_query(); ?>
+				<?php echo get_search_query(); ?>
 			</h1>
 
 			<?php get_template_part( 'loop' ); ?>

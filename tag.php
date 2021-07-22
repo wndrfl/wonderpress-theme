@@ -12,12 +12,11 @@ get_header();
 ?>
 
 	<main role="main">
-		<!-- section -->
 		<section>
 
 			<h1>
 			<?php
-			esc_html_e( 'Tag Archive: ', 'bt' );
+			esc_html_e( 'Tag Archive: ', 'wonder' );
 			echo single_tag_title( '', false );
 			?>
 			</h1>
@@ -27,7 +26,6 @@ get_header();
 			<?php get_template_part( 'pagination' ); ?>
 
 		</section>
-		<!-- /section -->
 	</main>
 
 <?php get_sidebar(); ?>
