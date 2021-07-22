@@ -60,21 +60,48 @@ class Image extends Abstract_Partial {
 	 * @return void
 	 */
 	public function __construct( array $params = array() ) {
-		// Check to see if a preferred size was passed.
-		$classes = ( isset( $params['classes'] ) ) ? $params['classes'] : array();
-		$this->classes = ( is_array( $classes ) ) ? implode( ' ', $classes ) : $classes;
 
 		// Check to see if a preferred size was passed.
 		$this->size = ( isset( $params['size'] ) ) ? $params['size'] : 'large';
 
+		// Check for an acf convenience array
+		if ( isset( $params['acf'] ) && is_array( $params['acf'] ) ) {
+
+			$this->alt = isset( $params['acf']['alt'] ) ? $params['acf']['alt'] : null;
+
+			switch ( $this->size ) {
+				case 'medium':
+					$this->src = isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : null;
+					break;
+				case 'small':
+					$this->src = isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : null;
+					break;
+				case 'large':
+				default:
+					$this->src = isset( $params['acf']['sizes']['large'] ) ? $params['acf']['sizes']['large'] : null;
+					break;
+			}
+
+			$this->srcset = array(
+				'1024' => isset( $params['acf']['sizes']['banner'] ) ? $params['acf']['sizes']['banner'] : $this->src,
+				'768' => isset( $params['acf']['sizes']['large'] ) ? $params['acf']['sizes']['large'] : $this->src,
+				'120' => isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : $this->src,
+				'0' => isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : $this->src,
+			);
+		}
+
+		// Check to see if a preferred size was passed.
+		$classes = ( isset( $params['classes'] ) ) ? $params['classes'] : array();
+		$this->classes = ( is_array( $classes ) ) ? implode( ' ', $classes ) : $classes;
+
 		// Check for and generate a srcset
-		$this->srcset = ( isset( $params['srcset'] ) ) ? $params['srcset'] : array();
+		$this->srcset = ( isset( $params['srcset'] ) ) ? $params['srcset'] : $this->srcset;
 
 		// Check for an alt tag.
-		$this->alt = ( isset( $params['alt'] ) ) ? $params['alt'] : null;
+		$this->alt = ( isset( $params['alt'] ) ) ? $params['alt'] : $this->alt;
 
 		// Check for a src (this will not be used if $srcs exists).
-		$this->src = ( isset( $params['src'] ) ) ? $params['src'] : null;
+		$this->src = ( isset( $params['src'] ) ) ? $params['src'] : $this->src;
 
 		// Set arbitrary attributes for the element (such as data attributes).
 		$this->attributes = ( isset( $params['attributes'] ) && is_array( $params['attributes'] ) ) ? $params['attributes'] : array();
@@ -112,7 +139,7 @@ class Image extends Abstract_Partial {
 			<?php foreach ( $this->srcset as $min => $src ) { ?>
 			<source media="(min-width:<?php echo esc_attr( $min ); ?>px)" srcset="<?php echo esc_url( $src ); ?>">
 			<?php } ?>
-			<img src="<?php echo esc_url( reset( $srcs ) ); ?>" class="<?php echo esc_attr( ( isset( $this->classes ) ) ? $this->classes : '' ); ?>"
+			<img src="<?php echo esc_url( reset( $this->srcset ) ); ?>" class="<?php echo esc_attr( ( isset( $this->classes ) ) ? $this->classes : '' ); ?>"
 				alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
 				<?php foreach ( $this->attributes as $attribute => $value ) { ?>
 					<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
@@ -124,8 +151,8 @@ class Image extends Abstract_Partial {
 		} else {
 			?>
 		<img src="<?php echo esc_url( $this->src ); ?>"
-			class="<?php echo esc_attr( ( isset( $this->classes ) ) ? $this->classes : '' ); ?>"
-			alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
+			 class="<?php echo esc_attr( ( $this->classes ) ? $this->classes : 'd' ); ?>"
+			 alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
 			<?php foreach ( $this->attributes as $attribute => $value ) { ?>
 				<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
 			<?php } ?>

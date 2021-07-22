@@ -57,14 +57,8 @@
 				<a href="<?php echo esc_url( home_url() ); ?>"></a>
 			</div>
 
-			<nav class="theme-header-nav hidden-xs" role="navigation">
+			<nav class="theme-header-nav" role="navigation">
 				<?php wonder_nav( 'header-menu' ); ?>
 			</nav>
-
-			<a href="#" id="theme-header-hamburger" class="theme-header-hamburger visible-xs-block">
-				<span class="theme-header-hamburger-bar"></span>
-				<span class="theme-header-hamburger-bar"></span>
-				<span class="theme-header-hamburger-bar"></span>
-			</a>
 		</div>
 	</header>
