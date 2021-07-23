@@ -1,6 +1,9 @@
 {
   "name": "wonderpress-theme",
   "version": "2.2.0",
+  "engines": {
+    "node": ">=12.10.0"
+  },
   "devDependencies": {
     "@wndrfl/static-kit-cli": "<2.0.0"
   },
