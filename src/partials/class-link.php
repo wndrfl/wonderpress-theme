@@ -22,6 +22,11 @@ class Link extends Abstract_Partial {
 	 * @var Array $_properties
 	 */
 	protected static $_properties = array(
+		'acf' => array(
+			'description' => 'An array of ACF values',
+			'format' => 'array',
+			'required' => false,
+		),
 		'attributes' => array(
 			'description' => 'An array of arbitrary attributes for the anchor element',
 			'format' => 'array',
@@ -63,24 +68,43 @@ class Link extends Abstract_Partial {
 	 * @return void
 	 */
 	public function __construct( array $params = array() ) {
+
+		// First try to gather all the ACF
+		if ( isset( $params['acf'] ) ) {
+			switch ( $params['acf']['type'] ) {
+				case 'tel':
+					$this->url = ( isset( $params['acf']['url'] ) ) ? 'tel:' . $params['acf']['url'] : null;
+					break;
+				case 'mailto':
+					$this->url = ( isset( $params['acf']['url'] ) ) ? 'mailto:' . $params['acf']['url'] : null;
+					break;
+				default:
+					$this->url = ( isset( $params['acf']['url'] ) ) ? $params['acf']['url'] : null;
+					break;
+			}
+			$this->open_in_new_tab = ( isset( $params['acf']['open_in_new_tab'] ) ) ? $params['acf']['open_in_new_tab'] : false;
+			$this->content = ( isset( $params['acf']['content'] ) ) ? $params['acf']['content'] : null;
+			$this->title = ( isset( $params['acf']['title'] ) ) ? $params['acf']['title'] : null;
+		}
+
 		// Check to see if a preferred size was passed.
 		$classes = ( isset( $params['classes'] ) ) ? $params['classes'] : array();
 		$this->classes = ( is_array( $classes ) ) ? implode( ' ', $classes ) : $classes;
 
 		// Check for content
-		$this->content = ( isset( $params['content'] ) ) ? $params['content'] : null;
+		$this->content = ( isset( $params['content'] ) ) ? $params['content'] : $this->content;
 
 		// Open in a new tab?
-		$this->open_in_new_tab = ( isset( $params['open_in_new_tab'] ) ) ? $params['open_in_new_tab'] : false;
+		$this->open_in_new_tab = ( isset( $params['open_in_new_tab'] ) ) ? $params['open_in_new_tab'] : ( $this->open_in_new_tab ? $this->open_in_new_tab : false );
 
 		// Check for a title.
-		$this->title = ( isset( $params['title'] ) ) ? $params['title'] : null;
+		$this->title = ( isset( $params['title'] ) ) ? $params['title'] : $this->title;
 		if ( ! $this->title ) {
 			$this->title = strip_tags( $this->content );
 		}
 
 		// Check for a url.
-		$this->url = ( isset( $params['url'] ) ) ? $params['url'] : null;
+		$this->url = ( isset( $params['url'] ) ) ? $params['url'] : $this->url;
 
 		// Set arbitrary attributes for the element (such as data attributes).
 		$this->attributes = ( isset( $params['attributes'] ) && is_array( $params['attributes'] ) ) ? $params['attributes'] : array();

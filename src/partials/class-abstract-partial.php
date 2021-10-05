@@ -138,7 +138,7 @@ abstract class Abstract_Partial implements Partial_Interface {
 		}
 
 		foreach ( static::$_properties as $key => $config ) {
-			if ( isset( $config['required'] ) && $config['required'] && is_null( $this->$key ) ) {
+			if ( true == isset( $config['required'] ) && $config['required'] && is_null( $this->$key ) ) {
 				$invalid_properties[ $key ] = $config;
 				continue;
 			}
@@ -157,6 +157,9 @@ abstract class Abstract_Partial implements Partial_Interface {
 							break;
 						case 'string':
 							$is_valid = is_string( $this->$key );
+							break;
+						default:
+							$is_valid = true;
 							break;
 					}
 
