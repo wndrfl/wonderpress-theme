@@ -116,3 +116,52 @@ if ( ! function_exists( 'wonder_nav' ) ) {
 		);
 	}
 }
+
+if ( ! function_exists( 'wonder_rte_filter' ) ) {
+	/**
+	 * Add a class to p tags from the wysiwyg.
+	 *
+	 * @param String $content The content to filter.
+	 */
+	function wonder_rte_filter( $content ) {
+		$content = apply_filters( 'the_content', $content );
+
+		$replaceable = array(
+			'a',
+			'blockquote',
+			'figcaption',
+			'figure',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'hr',
+			'img',
+			'li',
+			'p',
+			'strong',
+			'table',
+			'ul',
+		);
+
+		$dom = new DOMDocument();
+		libxml_use_internal_errors( true );
+		$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
+		libxml_clear_errors();
+
+		foreach ( $replaceable as $tag ) {
+			foreach ( $dom->getElementsByTagName( $tag ) as $node ) {
+				$existing = $node->getAttribute( 'class' );
+				$existing_parts = explode( ' ', $existing );
+				$existing_parts[] = 'theme-rte__' . $tag;
+				$node->setAttribute( 'class', implode( ' ', $existing_parts ) );
+			}
+		}
+
+		$content = $dom->saveHTML();
+
+		return '<div class="theme-rte">' . $content . '</div>';
+	}
+}
