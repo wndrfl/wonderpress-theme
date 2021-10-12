@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const {execSync} = require('child_process');
-const fs = require('fs');
+import { execSync } from 'child_process';
+import fs from 'fs';
 
 // Post-Install scripts
 // This script should be run after npm has completed its
