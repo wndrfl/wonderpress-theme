@@ -24,7 +24,7 @@ files.forEach((v,i) => {
 });
 
 // Remove directories that were created during npm install
-let dirs = ['css','images','js','node_modules','vendor'];
+let dirs = ['.wonderpress/archive','css','images','js','node_modules','vendor'];
 dirs.forEach((v,i) => {
 	fs.rmdir(v, { recursive: true }, (err) => {
 	    if (err) {
