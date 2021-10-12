@@ -1,6 +1,6 @@
 {
   "name": "wonderpress-theme",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "type": "module",
   "engines": {
     "node": ">=12.10.0"
