@@ -80,7 +80,7 @@ function wonder_enqueue_scripts() {
 		);
 
 		// This is hear to trigger any js scripts with a dependency on jQuery
-		wp_register_script( 'jquery', false, array( 'global' ), false, true );
+		wp_register_script( 'jquery', false, array( 'global' ), '1.0.0', true );
 	}
 }
 
