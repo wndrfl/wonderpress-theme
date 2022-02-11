@@ -92,6 +92,18 @@ abstract class Abstract_Partial implements Partial_Interface {
 	}
 
 	/**
+	 * Constructor
+	 *
+	 * @param Array $params An array of values to populate the partial snippet.
+	 * @return void
+	 */
+	public function __construct( array $params = array() ) {
+		foreach ( static::$_properties as $name => $config ) {
+			$this->$name = isset( $params[ $name ] ) ? $params[ $name ] : null;
+		}
+	}
+
+	/**
 	 * Compress an HTML string to remove extra whitespaces.
 	 *
 	 * @param String $html An html string to compress.
@@ -138,7 +150,7 @@ abstract class Abstract_Partial implements Partial_Interface {
 		}
 
 		foreach ( static::$_properties as $key => $config ) {
-			if ( true == isset( $config['required'] ) && $config['required'] && is_null( $this->$key ) ) {
+			if ( isset( $config['required'] ) && $config['required'] && is_null( $this->$key ) ) {
 				$invalid_properties[ $key ] = $config;
 				continue;
 			}
@@ -155,11 +167,11 @@ abstract class Abstract_Partial implements Partial_Interface {
 						case 'boolean':
 							$is_valid = is_bool( $this->$key );
 							break;
+						case 'object':
+							$is_valid = is_object( $this->$key );
+							break;
 						case 'string':
 							$is_valid = is_string( $this->$key );
-							break;
-						default:
-							$is_valid = true;
 							break;
 					}
 

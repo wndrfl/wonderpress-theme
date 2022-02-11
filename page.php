@@ -27,8 +27,6 @@ get_header();
 
 				<?php comments_template( '', true ); ?>
 
-				<br class="clear">
-
 				<?php edit_post_link(); ?>
 
 			</article>
@@ -46,7 +44,5 @@ get_header();
 		<?php endif; ?>
 
 	</main>
-
-<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>

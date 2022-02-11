@@ -8,9 +8,7 @@
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
-
 <head>
-
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<title><?php wp_title(); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -22,42 +20,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="<?php bloginfo( 'description' ); ?>">
 
-
 	<?php
 	if ( is_singular() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );}
 	?>
 
 	<?php wp_head(); ?>
-
-	<!-- analytics -->
-	<script>
-		(function(f, i, r, e, s, h, l) {
-			i['GoogleAnalyticsObject'] = s;
-			f[s] = f[s] || function() {
-				(f[s].q = f[s].q || []).push(arguments)
-			}, f[s].l = 1 * new Date();
-			h = i.createElement(r),
-				l = i.getElementsByTagName(r)[0];
-			h.async = 1;
-			h.src = e;
-			l.parentNode.insertBefore(h, l)
-		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-		ga('create', 'UA-XXXXXXXX-XX', 'auto');
-		ga('send', 'pageview');
-	</script>
 </head>
 
 <body id="<?php echo esc_attr( wonder_body_id() ); ?>" <?php body_class(); ?>>
 
-	<header id="theme-header" class="theme-header clear" role="banner">
+	<header id="theme-header" class="theme-header" role="banner">
 		<div class="container">
 
-			<div class="theme-header-logo">
-				<a href="<?php echo esc_url( home_url() ); ?>"></a>
+			<div class="theme-header__logo">
+				<a href="<?php echo esc_url( home_url() ); ?>" title="Home" aria-label="Home"></a>
 			</div>
 
-			<nav class="theme-header-nav" role="navigation">
+			<nav class="theme-header__nav" role="navigation">
 				<?php wonder_nav( 'header-menu' ); ?>
 			</nav>
 		</div>

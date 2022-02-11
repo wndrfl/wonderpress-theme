@@ -31,11 +31,6 @@ class Image extends Abstract_Partial {
 			'format' => 'string',
 			'required' => false,
 		),
-		'height' => array(
-			'description' => 'The height of the raw image (used for setting height=)',
-			'format' => 'integer',
-			'required' => false,
-		),
 		'size' => array(
 			'description' => 'The default WP Image size',
 			'format' => 'string',
@@ -49,11 +44,6 @@ class Image extends Abstract_Partial {
 		'srcset' => array(
 			'description' => 'A srcset for a <picture> element',
 			'format' => 'array',
-			'required' => false,
-		),
-		'width' => array(
-			'description' => 'The width of the raw image (used for setting width=)',
-			'format' => 'integer',
 			'required' => false,
 		),
 		'attributes' => array(
@@ -79,48 +69,25 @@ class Image extends Abstract_Partial {
 
 			$this->alt = isset( $params['acf']['alt'] ) ? $params['acf']['alt'] : null;
 
-			$this->width = isset( $params['acf']['width'] ) ? $params['acf']['width'] : null;
-			$this->height = isset( $params['acf']['height'] ) ? $params['acf']['height'] : null;
-
 			switch ( $this->size ) {
-				case 'banner':
-					$this->src = isset( $params['acf']['sizes']['banner'] ) ? $params['acf']['sizes']['banner'] : null;
-					$this->srcset = array(
-						'1024' => isset( $params['acf']['sizes']['banner'] ) ? $params['acf']['sizes']['banner'] : $this->src,
-						'768' => isset( $params['acf']['sizes']['banner'] ) ? $params['acf']['sizes']['banner'] : $this->src,
-						'120' => isset( $params['acf']['sizes']['large'] ) ? $params['acf']['sizes']['large'] : $this->src,
-						'0' => isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : $this->src,
-					);
-					break;
 				case 'medium':
 					$this->src = isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : null;
-					$this->srcset = array(
-						'1024' => isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : $this->src,
-						'768' => isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : $this->src,
-						'120' => isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : $this->src,
-						'0' => isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : $this->src,
-					);
 					break;
 				case 'small':
 					$this->src = isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : null;
-					$this->srcset = array(
-						'1024' => isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : $this->src,
-						'768' => isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : $this->src,
-						'120' => isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : $this->src,
-						'0' => isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : $this->src,
-					);
 					break;
 				case 'large':
 				default:
 					$this->src = isset( $params['acf']['sizes']['large'] ) ? $params['acf']['sizes']['large'] : null;
-					$this->srcset = array(
-						'1024' => isset( $params['acf']['sizes']['large'] ) ? $params['acf']['sizes']['large'] : $this->src,
-						'768' => isset( $params['acf']['sizes']['large'] ) ? $params['acf']['sizes']['large'] : $this->src,
-						'120' => isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : $this->src,
-						'0' => isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : $this->src,
-					);
 					break;
 			}
+
+			$this->srcset = array(
+				'1024' => isset( $params['acf']['sizes']['banner'] ) ? $params['acf']['sizes']['banner'] : $this->src,
+				'768' => isset( $params['acf']['sizes']['large'] ) ? $params['acf']['sizes']['large'] : $this->src,
+				'120' => isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : $this->src,
+				'0' => isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : $this->src,
+			);
 		}
 
 		// Check to see if a preferred size was passed.
@@ -138,12 +105,6 @@ class Image extends Abstract_Partial {
 
 		// Set arbitrary attributes for the element (such as data attributes).
 		$this->attributes = ( isset( $params['attributes'] ) && is_array( $params['attributes'] ) ) ? $params['attributes'] : array();
-
-		// Set the width
-		$this->width = isset( $params['width'] ) ? $params['width'] : $this->width;
-
-		// Set the height
-		$this->height = isset( $params['height'] ) ? $params['height'] : $this->height;
 	}
 
 	/**
@@ -172,26 +133,17 @@ class Image extends Abstract_Partial {
 	 */
 	public function render_into_template() {
 		// If there are multiple sources, use the <picture> element.
-		if ( $this->srcset ) {
+		$srcset = $this->srcset;
+		if ( $srcset ) {
 			?>
 		<picture>
-			<?php foreach ( $this->srcset as $min => $src ) { ?>
+			<?php foreach ( $srcset as $min => $src ) { ?>
 			<source media="(min-width:<?php echo esc_attr( $min ); ?>px)" srcset="<?php echo esc_url( $src ); ?>">
 			<?php } ?>
-			<?php
-			$srcset = $this->srcset;
-			$display_image = reset( $srcset );
-			?>
-			<img src="<?php echo esc_url( $display_image ); ?>" class="<?php echo esc_attr( ( $this->classes ) ? $this->classes : '' ); ?>" 
-				 alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
+			<img src="<?php echo esc_url( reset( $srcset ) ); ?>" class="<?php echo esc_attr( ( isset( $this->classes ) ) ? $this->classes : '' ); ?>"
+				alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
 				<?php foreach ( $this->attributes as $attribute => $value ) { ?>
 					<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
-				<?php } ?>
-				<?php if ( $this->width ) { ?>
-					 width="<?php echo esc_attr( $this->width ); ?>"
-				<?php } ?>
-				<?php if ( $this->height ) { ?>
-					 height="<?php echo esc_attr( $this->height ); ?>"
 				<?php } ?>
 				/>
 		</picture>
@@ -203,13 +155,7 @@ class Image extends Abstract_Partial {
 			 class="<?php echo esc_attr( ( $this->classes ) ? $this->classes : '' ); ?>"
 			 alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
 			<?php foreach ( $this->attributes as $attribute => $value ) { ?>
-				<?php echo ' ' . esc_attr( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
-			<?php } ?>
-			<?php if ( $this->width ) { ?>
-				 width="<?php echo esc_attr( $this->width ); ?>"
-			<?php } ?>
-			<?php if ( $this->height ) { ?>
-				 height="<?php echo esc_attr( $this->height ); ?>"
+				<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
 			<?php } ?>
 			/>
 			<?php

@@ -78,6 +78,9 @@ function wonder_enqueue_scripts() {
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 			)
 		);
+
+		// This is hear to trigger any js scripts with a dependency on jQuery
+		wp_register_script( 'jquery', false, array( 'global' ), false, true );
 	}
 }
 
@@ -92,8 +95,8 @@ function wonder_enqueue_styles() {
 	// remove dashicons
 	wp_deregister_style( 'dashicons' );
 
-	wp_register_style( 'fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600', array(), '1.0', 'all' );
-	wp_enqueue_style( 'fonts' );
+	// wp_register_style( 'fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600', array(), '1.0', 'all' );
+	// wp_enqueue_style( 'fonts' );
 
 	$path = '/css/styles.css';
 	$version = filemtime( get_template_directory() . $path );
