@@ -30,15 +30,4 @@
 
 <body id="<?php echo esc_attr( wonder_body_id() ); ?>" <?php body_class(); ?>>
 
-	<header id="theme-header" class="theme-header" role="banner">
-		<div class="container">
-
-			<div class="theme-header__logo">
-				<a href="<?php echo esc_url( home_url() ); ?>" title="Home" aria-label="Home"></a>
-			</div>
-
-			<nav class="theme-header__nav" role="navigation">
-				<?php wonder_nav( 'header-menu' ); ?>
-			</nav>
-		</div>
-	</header>
+	<?php wonder_include_template_file( 'partials/theme-header.php', array() ); ?>

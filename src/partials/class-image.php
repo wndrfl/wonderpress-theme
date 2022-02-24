@@ -16,13 +16,38 @@ use Wonderpress\Partials\Abstract_Partial;
 class Image extends Abstract_Partial {
 
 	/**
+	 * Whether this partial accepts an ACF parameter for easy hydration.
+	 *
+	 * @var Boolean $_acf_compatible
+	 */
+	protected $_acf_compatible = true;
+
+	/**
+	 * A relative path to a partial template to use as the view for this partial.
+	 *
+	 * @var String|Boolean $_partial_template
+	 */
+	protected $_partial_template = 'partials/theme-image.php';
+
+	/**
 	 * A definition of all available properties.
 	 *
 	 * @var Array $_properties
 	 */
 	protected static $_properties = array(
+		'acf' => array(
+			'description' => 'The ACF array for this partial.',
+			'format' => 'array',
+			'required' => false,
+		),
+		'attributes' => array(
+			'description' => 'An array of arbitrary attributes for the DOM element',
+			'format' => 'array',
+			'required' => false,
+		),
 		'classes' => array(
 			'description' => 'The classes for the image element',
+			'default' => 'theme-image',
 			'format' => 'string|array',
 			'required' => false,
 		),
@@ -31,8 +56,14 @@ class Image extends Abstract_Partial {
 			'format' => 'string',
 			'required' => false,
 		),
+		'height' => array(
+			'description' => 'The height of the image (used for attributes only).',
+			'format' => 'string',
+			'required' => false,
+		),
 		'size' => array(
 			'description' => 'The default WP Image size',
+			'default' => 'large',
 			'format' => 'string',
 			'required' => false,
 		),
@@ -46,66 +77,12 @@ class Image extends Abstract_Partial {
 			'format' => 'array',
 			'required' => false,
 		),
-		'attributes' => array(
-			'description' => 'An array of arbitrary attributes for the DOM element',
-			'format' => 'array',
+		'width' => array(
+			'description' => 'The width of the image (used for attributes only).',
+			'format' => 'string',
 			'required' => false,
 		),
 	);
-
-	/**
-	 * Constructor
-	 *
-	 * @param Array $params An array of values to populate the partial snippet.
-	 * @return void
-	 */
-	public function __construct( array $params = array() ) {
-
-		// Check to see if a preferred size was passed.
-		$this->size = ( isset( $params['size'] ) ) ? $params['size'] : 'large';
-
-		// Check for an acf convenience array
-		if ( isset( $params['acf'] ) && is_array( $params['acf'] ) ) {
-
-			$this->alt = isset( $params['acf']['alt'] ) ? $params['acf']['alt'] : null;
-
-			switch ( $this->size ) {
-				case 'medium':
-					$this->src = isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : null;
-					break;
-				case 'small':
-					$this->src = isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : null;
-					break;
-				case 'large':
-				default:
-					$this->src = isset( $params['acf']['sizes']['large'] ) ? $params['acf']['sizes']['large'] : null;
-					break;
-			}
-
-			$this->srcset = array(
-				'1024' => isset( $params['acf']['sizes']['banner'] ) ? $params['acf']['sizes']['banner'] : $this->src,
-				'768' => isset( $params['acf']['sizes']['large'] ) ? $params['acf']['sizes']['large'] : $this->src,
-				'120' => isset( $params['acf']['sizes']['medium'] ) ? $params['acf']['sizes']['medium'] : $this->src,
-				'0' => isset( $params['acf']['sizes']['small'] ) ? $params['acf']['sizes']['small'] : $this->src,
-			);
-		}
-
-		// Check to see if a preferred size was passed.
-		$classes = ( isset( $params['classes'] ) ) ? $params['classes'] : array();
-		$this->classes = ( is_array( $classes ) ) ? implode( ' ', $classes ) : $classes;
-
-		// Check for and generate a srcset
-		$this->srcset = ( isset( $params['srcset'] ) ) ? $params['srcset'] : $this->srcset;
-
-		// Check for an alt tag.
-		$this->alt = ( isset( $params['alt'] ) ) ? $params['alt'] : $this->alt;
-
-		// Check for a src (this will not be used if $srcs exists).
-		$this->src = ( isset( $params['src'] ) ) ? $params['src'] : $this->src;
-
-		// Set arbitrary attributes for the element (such as data attributes).
-		$this->attributes = ( isset( $params['attributes'] ) && is_array( $params['attributes'] ) ) ? $params['attributes'] : array();
-	}
 
 	/**
 	 * Outputs an example code snippet for how to use this partial.
@@ -126,39 +103,44 @@ class Image extends Abstract_Partial {
 	}
 
 	/**
-	 * An internal process to merge the property values and HTML bits into a
-	 * usable HTML snippet.
+	 * A method to manipulate $_attrs before attempting to display.
 	 *
-	 * @return void
+	 * @return Boolean
 	 */
-	public function render_into_template() {
-		// If there are multiple sources, use the <picture> element.
-		$srcset = $this->srcset;
-		if ( $srcset ) {
-			?>
-		<picture>
-			<?php foreach ( $srcset as $min => $src ) { ?>
-			<source media="(min-width:<?php echo esc_attr( $min ); ?>px)" srcset="<?php echo esc_url( $src ); ?>">
-			<?php } ?>
-			<img src="<?php echo esc_url( reset( $srcset ) ); ?>" class="<?php echo esc_attr( ( isset( $this->classes ) ) ? $this->classes : '' ); ?>"
-				alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
-				<?php foreach ( $this->attributes as $attribute => $value ) { ?>
-					<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
-				<?php } ?>
-				/>
-		</picture>
-			<?php
-			// If we only have a single src, use a traditional <img> element.
-		} else {
-			?>
-		<img src="<?php echo esc_url( $this->src ); ?>"
-			 class="<?php echo esc_attr( ( $this->classes ) ? $this->classes : '' ); ?>"
-			 alt="<?php echo esc_attr( $this->alt ); ?>" loading="lazy"
-			<?php foreach ( $this->attributes as $attribute => $value ) { ?>
-				<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
-			<?php } ?>
-			/>
-			<?php
+	public function prepare_properties_for_display() {
+
+		// If ACF is provided, we do some more special assignments
+		if ( isset( $this->_attrs['acf'] ) && is_array( $this->_attrs['acf'] ) ) {
+
+			switch ( $this->size ) {
+				case 'medium':
+					$this->src = isset( $this->_attrs['acf']['sizes']['medium'] ) ? $this->_attrs['acf']['sizes']['medium'] : null;
+					break;
+				case 'small':
+					$this->src = isset( $this->_attrs['acf']['sizes']['small'] ) ? $this->_attrs['acf']['sizes']['small'] : null;
+					break;
+				case 'large':
+				default:
+					$this->src = isset( $this->_attrs['acf']['sizes']['large'] ) ? $this->_attrs['acf']['sizes']['large'] : null;
+					break;
+			}
+
+			$this->srcset = array(
+				'1024' => isset( $this->_attrs['acf']['sizes']['banner'] ) ? $this->_attrs['acf']['sizes']['banner'] : $this->src,
+				'768' => isset( $this->_attrs['acf']['sizes']['large'] ) ? $this->_attrs['acf']['sizes']['large'] : $this->src,
+				'120' => isset( $this->_attrs['acf']['sizes']['medium'] ) ? $this->_attrs['acf']['sizes']['medium'] : $this->src,
+				'0' => isset( $this->_attrs['acf']['sizes']['small'] ) ? $this->_attrs['acf']['sizes']['small'] : $this->src,
+			);
+
+			$this->width = isset( $this->_attrs['acf']['width'] ) ? (string) $this->_attrs['acf']['width'] : null;
+			$this->height = isset( $this->_attrs['acf']['height'] ) ? (string) $this->_attrs['acf']['height'] : null;
 		}
+
+		// If no alt was passed, let's do a best attempt
+		if ( ! $this->alt || empty( $this->alt ) ) {
+			$this->alt = $this->src;
+		}
+
+		return true;
 	}
 }

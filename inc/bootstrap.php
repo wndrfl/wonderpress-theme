@@ -64,23 +64,29 @@ function wonder_enqueue_scripts() {
 		// Remove the built-in WordPress copy of jQuery
 		wp_deregister_script( 'jquery' );
 
-		// Replace with our own copy of jquery (and our custom scripts)
-		$path = '/js/scripts.js';
-		$version = filemtime( get_template_directory() . $path );
-		wp_register_script( 'global', get_template_directory_uri() . $path, array(), $version, true );
-		wp_enqueue_script( 'global' );
+		if ( wonder_body_id() ) {
 
-		wp_localize_script(
-			'global',
-			'global_vars',
-			array(
-				'ajax_nonce' => wp_create_nonce( 'ajax-nonce' ),
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-			)
-		);
+			// Replace with our own copy of jquery (and our custom scripts)
+			$path = '/js/' . wonder_body_id() . '.js';
+			if ( file_exists( get_template_directory() . $path ) ) {
 
-		// This is hear to trigger any js scripts with a dependency on jQuery
-		wp_register_script( 'jquery', false, array( 'global' ), '1.0.0', true );
+				$version = filemtime( get_template_directory() . $path );
+				wp_register_script( 'global', get_template_directory_uri() . $path, array(), $version, true );
+				wp_enqueue_script( 'global' );
+
+				wp_localize_script(
+					'global',
+					'global_vars',
+					array(
+						'ajax_nonce' => wp_create_nonce( 'ajax-nonce' ),
+						'ajax_url' => admin_url( 'admin-ajax.php' ),
+					)
+				);
+
+				// This is hear to trigger any js scripts with a dependency on jQuery
+				wp_register_script( 'jquery', false, array( 'global' ), '1.0.0', true );
+			}
+		}
 	}
 }
 
@@ -95,13 +101,15 @@ function wonder_enqueue_styles() {
 	// remove dashicons
 	wp_deregister_style( 'dashicons' );
 
-	// wp_register_style( 'fonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600', array(), '1.0', 'all' );
-	// wp_enqueue_style( 'fonts' );
+	if ( wonder_body_id() ) {
+		$path = '/css/' . wonder_body_id() . '.css';
 
-	$path = '/css/styles.css';
-	$version = filemtime( get_template_directory() . $path );
-	wp_register_style( 'theme', get_template_directory_uri() . $path, array(), $version, 'all' );
-	wp_enqueue_style( 'theme' );
+		if ( file_exists( get_template_directory() . $path ) ) {
+			$version = filemtime( get_template_directory() . $path );
+			wp_register_style( 'theme', get_template_directory_uri() . $path, array(), $version, 'all' );
+			wp_enqueue_style( 'theme' );
+		}
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'wonder_enqueue_styles' );

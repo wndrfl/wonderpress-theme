@@ -27,6 +27,57 @@ if ( ! function_exists( 'wonder_body_id' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wonder_get_menu_array' ) ) {
+	/**
+	 * Get a WordPress Menu as an associative array.
+	 *
+	 * @param String $location The name of the menu location.
+	 * @return Array|Boolean
+	 */
+	function wonder_get_menu_array( $location ) {
+
+		// https://developer.wordpress.org/reference/functions/wp_get_nav_menu_items/
+		$menu_items = wp_get_nav_menu_items( 'header-menu', array() );
+
+		if ( ! $menu_items ) {
+			return array();
+		}
+
+		$menu = array();
+
+		// Get the parent items
+		foreach ( $menu_items as $menu_item ) {
+			if ( empty( $menu_item->menu_item_parent ) ) {
+				$menu[ $menu_item->ID ] = (array) $menu_item;
+				$menu[ $menu_item->ID ]['children'] = array();
+			}
+		}
+
+		// Get all subs
+		// Right now this only checks 1 level deep
+		foreach ( $menu_items as $menu_item ) {
+			if ( $menu_item->menu_item_parent ) {
+
+				$parent_menu_item = false;
+
+				if ( isset( $menu[ $menu_item->menu_item_parent ] ) ) {
+					$parent_menu_item = &$menu[ $menu_item->menu_item_parent ];
+				}
+
+				// TODO: Check submenus for matches
+
+				if ( isset( $parent_menu_item ) && $parent_menu_item ) {
+					$parent_menu_item['children'][ $menu_item->ID ] = (array) $menu_item;
+					$parent_menu_item['children'][ $menu_item->ID ]['children'] = array();
+					unset( $parent_menu_item );
+				}
+			}
+		}
+
+		return $menu;
+	}
+}
+
 if ( ! function_exists( 'wonder_image' ) ) {
 	/**
 	 * Easily render an image tag.
