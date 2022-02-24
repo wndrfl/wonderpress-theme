@@ -16,6 +16,13 @@ use Wonderpress\Partials\Partial_Interface;
 abstract class Abstract_Partial implements Partial_Interface {
 
 	/**
+	 * Whether this partial accepts an ACF parameter for easy hydration.
+	 *
+	 * @var Boolean $_acf_compatible
+	 */
+	protected $_acf_compatible = false;
+
+	/**
 	 * All attributes for the template will be stored here.
 	 *
 	 * @var Array $_attrs
@@ -28,6 +35,13 @@ abstract class Abstract_Partial implements Partial_Interface {
 	 * @var Array $_properties
 	 */
 	protected static $_properties = array();
+
+	/**
+	 * A relative path to a partial template to use as the view for this partial.
+	 *
+	 * @var String|Boolean $_partial_template
+	 */
+	protected $_partial_template = null;
 
 	/**
 	 * A magic method for how to handle var_dump() of this object.
@@ -104,6 +118,33 @@ abstract class Abstract_Partial implements Partial_Interface {
 	}
 
 	/**
+	 * A method to attempt to use a provided ACF field to hydrate various properties.
+	 *
+	 * @return Boolean
+	 */
+	public function attempt_acf_ingestion() {
+		if ( ! $this->_acf_compatible ) {
+			return;
+		}
+
+		if ( isset( $this->_attrs['acf'] ) ) {
+			foreach ( static::$_properties as $property_key => $property_config ) {
+
+				if ( 'acf' == $property_key ) {
+					continue;
+				}
+
+				foreach ( $this->_attrs['acf'] as $acf_key => $acf_value ) {
+					if ( $acf_key == $property_key ) {
+						$this->$property_key = $acf_value;
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	/**
 	 * Compress an HTML string to remove extra whitespaces.
 	 *
 	 * @param String $html An html string to compress.
@@ -161,17 +202,17 @@ abstract class Abstract_Partial implements Partial_Interface {
 				foreach ( $format_parts as $format ) {
 					switch ( $format ) {
 						case 'array':
-							$is_valid = is_array( $this->$key );
+							$is_valid = is_array( $this->$key ) || ( is_bool( $this->$key ) && ! $this->$key );
 							break;
 						case 'bool':
 						case 'boolean':
 							$is_valid = is_bool( $this->$key );
 							break;
 						case 'object':
-							$is_valid = is_object( $this->$key );
+							$is_valid = is_object( $this->$key ) || ( is_bool( $this->$key ) && ! $this->$key );
 							break;
 						case 'string':
-							$is_valid = is_string( $this->$key );
+							$is_valid = is_string( $this->$key ) || ( is_bool( $this->$key ) && ! $this->$key );
 							break;
 					}
 
@@ -218,6 +259,15 @@ abstract class Abstract_Partial implements Partial_Interface {
 	}
 
 	/**
+	 * A method to manipulate $_attrs before attempting to display.
+	 *
+	 * @return Boolean
+	 */
+	public function prepare_properties_for_display() {
+		return true;
+	}
+
+	/**
 	 * Build and render the HTML for this partial.
 	 *
 	 * @param Boolean $echo Whether or not to echo the HTML or simply return it.
@@ -228,6 +278,9 @@ abstract class Abstract_Partial implements Partial_Interface {
 		if ( ! method_exists( $this, 'render_into_template' ) ) {
 			throw new \Exception( 'No template provided for this partial.' );
 		}
+
+		$this->attempt_acf_ingestion();
+		$this->prepare_properties_for_display();
 
 		$invalid_properties = $this->get_invalid_properties();
 		if ( $invalid_properties ) {
@@ -286,5 +339,20 @@ abstract class Abstract_Partial implements Partial_Interface {
 		echo wp_kses( $html, $allowed_tags );
 
 		return true;
+	}
+
+	/**
+	 * An internal process to merge the property values and HTML bits into a
+	 * usable HTML snippet.
+	 *
+	 * @throws \Exception If there is no configured partial template.
+	 *
+	 * @return void
+	 */
+	public function render_into_template() {
+		if ( ! property_exists( $this, '_partial_template' ) || ! $this->_partial_template ) {
+			throw new \Exception( 'A partial template has not been provided.' );
+		}
+		wonder_include_template_file( $this->_partial_template, $this->_attrs );
 	}
 }
