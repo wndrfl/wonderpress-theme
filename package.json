@@ -1,6 +1,6 @@
 {
   "name": "wonderpress-theme",
-  "version": "2.10.0",
+  "version": "2.11.0",
   "engines": {
     "node": ">=12.10.0"
   },
@@ -8,8 +8,8 @@
     "@wndrfl/static-kit-cli": "<3.0.0"
   },
   "scripts": {
-    "build" : "npm run build --prefix static --if-present",
-    "dev" : "npm run dev --prefix static --if-present",
+    "build": "npm run build --prefix static --if-present",
+    "dev": "npm run dev --prefix static --if-present",
     "init": "npx @wndrfl/static-kit-cli install --init --dir static",
     "postinstall": "npm run init",
     "reset": "rm -rf static && rm -rf vendor",
