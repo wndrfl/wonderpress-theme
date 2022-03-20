@@ -10,11 +10,9 @@
   "scripts": {
     "build": "npm run build --prefix static --if-present",
     "dev": "npm run dev --prefix static --if-present",
-    "init": "npx @wndrfl/static-kit-cli install --init --dir static",
-    "postinstall": "npm run init",
+    "postinstall": "composer install && npx @wndrfl/static-kit-cli install -d static -i -c -n 404,archive,author,category,index,page,search,single,tag",
     "reset": "rm -rf static && rm -rf vendor",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "wonderpress-init": "npm install && composer install"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
