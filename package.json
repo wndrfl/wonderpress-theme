@@ -20,7 +20,7 @@
     "url": "git+https://github.com/wndrfl/wonderpress-theme.git"
   },
   "author": "Johnnie Munger <johnnie@wonderful.io>",
-  "license": "MIT",
+  "license": "GPL-2.0-or-later",
   "bugs": {
     "url": "https://github.com/wndrfl/wonderpress-theme/issues"
   },
