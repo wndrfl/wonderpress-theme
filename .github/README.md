@@ -26,3 +26,7 @@ To automatically fix errors found during lint:
 
 `$ composer run lint-fix`
 
+## License
+
+GPL-2.0-or-later — see [LICENSE](../LICENSE).
+
