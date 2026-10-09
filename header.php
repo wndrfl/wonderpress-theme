@@ -29,5 +29,8 @@
 </head>
 
 <body id="<?php echo esc_attr( wonder_body_id() ); ?>" <?php body_class(); ?>>
+	<?php wp_body_open(); ?>
+
+	<a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'wonder' ); ?></a>
 
 	<?php wonder_include_template_file( 'partials/theme-header.php', array() ); ?>

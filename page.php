@@ -11,7 +11,7 @@ wonder_body_id( 'page' );
 get_header();
 ?>
 
-	<main role="main">
+	<main id="main" tabindex="-1">
 
 		<h1><?php the_title(); ?></h1>
 
