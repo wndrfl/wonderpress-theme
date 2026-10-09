@@ -18,11 +18,11 @@ get_header();
 			<article id="post-404">
 
 				<h1>
-					<?php esc_html_e( 'Page not found', 'bt' ); ?>
+					<?php esc_html_e( 'Page not found', 'wonder' ); ?>
 				</h1>
 				<h2>
 					<a href="<?php echo esc_url( home_url() ); ?>">
-						<?php esc_html_e( 'Return home?', 'bt' ); ?>
+						<?php esc_html_e( 'Return home?', 'wonder' ); ?>
 					</a>
 				</h2>
 
