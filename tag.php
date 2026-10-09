@@ -11,7 +11,7 @@ wonder_body_id( 'tag' );
 get_header();
 ?>
 
-	<main role="main">
+	<main id="main" tabindex="-1">
 		<section>
 
 			<h1>
