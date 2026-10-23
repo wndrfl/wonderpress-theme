@@ -52,7 +52,7 @@ function require_all( $path ) {
 /**
  * Import PHP files from ./lib/ directory
  */
-require_all( dirname( __FILE__ ) . '/inc/' );
+require_all( __DIR__ . '/inc/' );
 
 
 /**

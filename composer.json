@@ -1,14 +1,18 @@
 {
     "license": "GPL-2.0-or-later",
     "require-dev": {
-        "wp-coding-standards/wpcs": "^2.3.0"
+        "wp-coding-standards/wpcs": "^3.4.1"
     },
     "scripts": {
         "lint": "./vendor/bin/phpcs -p -v .",
         "lint-fix": "./vendor/bin/phpcbf -p -v .",
         "post-install-cmd": [
-            "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
             "./vendor/bin/phpcs -i"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
