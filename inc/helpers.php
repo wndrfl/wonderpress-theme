@@ -111,7 +111,7 @@ if ( ! function_exists( 'wonder_include_template_file' ) ) {
 		foreach ( $_params as $k => $v ) {
 			$$k = $v;
 		}
-		include( locate_template( $_filename ) );
+		include locate_template( $_filename );
 
 		if ( $_return ) {
 			$html = ob_get_contents();

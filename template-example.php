@@ -6,7 +6,7 @@
  * @package Wonderpress Theme
  */
 
-use Wonderpress\Partials\Image as Image;
+use Wonderpress\Partials\Image;
 
 // Set the <body> id
 wonder_body_id( 'example' );
